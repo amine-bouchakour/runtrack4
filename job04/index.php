@@ -9,10 +9,10 @@
 <body>
 
 <header >
-    <nav class="lien" >
-        <a href="">Acceuil</a>
-        <a href="">Présentation</a>
-        <a href="">Contact</a>
+    <nav class="lien">
+        <div><a href="">Acceuil</a></div>
+        <div><a href="">Présentation</a></div>
+        <div><a href="">Contact</a></div>
     </nav>
     <nav class="menu">
         <div class="burger" type="checkbox"></div>
