@@ -43,7 +43,8 @@
         <label for="Sport">Sport</label><br>
         <input type="checkbox" name="Lecture" placeholder="">
         <label for="Lecture">Lecture</label><br><br>
-        <input type="submit" value="Valider"><br><br>
+        <button type="submit">Valider</button><br><br>
+
     </form>
 
 
