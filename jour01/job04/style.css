@@ -1,0 +1,108 @@
+/* body{
+    display: flex;
+    flex-direction: column;
+} */
+
+nav{
+    background-color: yellow;
+    /* padding:1%; */
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+
+@media screen and (min-width:1600px){
+    main{
+        display: flex;
+        justify-content: space-between;
+        padding: 1% 5%;
+    }
+
+    .section{
+        background-color: #88c1d0;
+        width: 320px;
+        height: 200px;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1599px){
+    main{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 1% 5%;
+    }
+    .section{
+        background-color: #88c1d0;
+        width: 320px;
+        height: 200px;
+        margin: 2% auto;
+    }
+}
+
+@media screen and (max-width:768px){
+    body{
+        background-color: wheat;
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1% 5%;
+    }
+
+    nav[class=lien]{
+        background-color: yellow;
+        display: none;
+    }
+
+    .menu{
+        background-color: yellow;
+        color:black;
+        height:50px;
+        position:relative;
+    }
+
+    .menu .title{
+        font-size:30px;
+        font-weight:bold;
+        line-height:50px;
+        padding:0 20px;
+        text-transform:uppercase;
+    }
+
+    .menu .burger{
+        appearance:none;
+        -moz-appearance:none;
+        -webkit-appearance:none;
+        color:inherit;
+        cursor:pointer;
+        font-family:'Material Icons';
+        font-size:30px;
+        line-height:50px;
+        margin:0;
+        outline:0;
+        padding:0;
+        position:absolute;
+        text-align:center;
+        top:0;
+        left:10px;
+        width:50px;
+    }
+
+    .menu .burger:before{
+        content:'menu';
+    }
+
+    .menu .burger:checked:before{
+        content:'close';
+    }
+
+    .section{
+        background-color: #88c1d0;
+        width: 320px;
+        height: 200px;
+        margin: 2% auto;
+    }
+}
