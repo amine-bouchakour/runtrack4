@@ -2,10 +2,12 @@ $('document').ready(function(){
 
 console.log('toto');
 
-$('#achatPapillon').
 
 
 
+$('#myModal').on('shown.bs.modal', function () {
+    $('achatPapillon').trigger('focus')
+  })
 
 
 })
