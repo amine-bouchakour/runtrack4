@@ -102,13 +102,34 @@
 
         </div>
 
-        <div class="row">
-            <div class="col-2 offset-8">Installation de AI 9000</div>
+        <!-- PROGRESS BAR -->
+        <div class="row justify-content-center m-0">
+            <div class="col-2 offset-7">Installation de AI 9000</div>
 
-            <div class="progress col-6 offset-3">
-                <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar"
-                    style="width: 95%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+            <div class="row col-9 justify-content-center">
+                <div><svg class="bi bi-arrow-bar-left" style="margin-top:-12px" width="1em" height="1em"
+                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M5.854 4.646a.5.5 0 00-.708 0l-3 3a.5.5 0 000 .708l3 3a.5.5 0 00.708-.708L3.207 8l2.647-2.646a.5.5 0 000-.708z"
+                            clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                            d="M10 8a.5.5 0 00-.5-.5H3a.5.5 0 000 1h6.5A.5.5 0 0010 8zm2.5 6a.5.5 0 01-.5-.5v-11a.5.5 0 011 0v11a.5.5 0 01-.5.5z"
+                            clip-rule="evenodd" />
+                    </svg></div>
+                <div class="progress col-10 p-0 m-0">
+                    <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar"
+                        style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                    </div>
                 </div>
+                <div><svg class="bi bi-arrow-bar-right" style="margin-top:-12px" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z"
+                            clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                            d="M6 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H6.5A.5.5 0 016 8zm-2.5 6a.5.5 0 01-.5-.5v-11a.5.5 0 011 0v11a.5.5 0 01-.5.5z"
+                            clip-rule="evenodd" />
+                    </svg></div>
             </div>
         </div>
 
