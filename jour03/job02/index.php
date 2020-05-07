@@ -85,25 +85,28 @@
             <!-- DIV CENTRALE -->
             <div class="col-8 p-3">
                 <div class="jumbotron">
-                    <h1 class="display-4">Bonjour, monde !</h1>
+                    <h1 class="display-4" id="titreJumbotron">Bonjour, monde !</h1>
+                    <div id="texteJumbotron">
                     <p class="lead">Il existe plusieurs visions du terme :</p>
                     <p class="lead">Le monde est la matière, l'espace et les phénomènes qui nous sont accessibles par
                         les sens, l'expérience ou la raison.</p>
                     <p class="lead">Le sens le plus courant désigne notre planète, la Terre, avec ses habitants, et son
                         environnement plus ou moins naturel.</p>
+                </div>
                     <hr class="my-4">
                     <p>Le sens étendu désigne l'univers dans son ensemble.</p>
-                    <button type="button" class="btn btn-danger">Rebooter le Monde</button>
+                    <button type="button" id="changeJumbotronTexte" class="btn btn-danger">Rebooter le Monde</button>
                     <div class="spinner-border text-primary" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination col s4 offset-10">
-                            <li class="page-item"><a class="page-link" href="#">
-                                    <<</a> </li> <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">>></a></li>
+                            <li class="page-item">
+                            <a class="page-link" id="paginationMoins" href="#"><<</a> </li> 
+                            <li class="page-item"><a class="page-link" id="pagination1" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" id="pagination2" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" id="pagination3" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" id="paginationPlus" href="#">>></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -113,16 +116,16 @@
             <!-- DIV DE DROITE-->
             <div class="col-2 p-3">
                 <ul class="list-group">
-                    <li class="list-group-item active">Limbes</li>
-                    <li class="list-group-item">Luxure</li>
-                    <li class="list-group-item">Gourmandise</li>
-                    <li class="list-group-item">Avarice</li>
-                    <li class="list-group-item">Colère</li>
-                    <li class="list-group-item">Heresie</li>
-                    <li class="list-group-item">Violence</li>
-                    <li class="list-group-item">Ruse et Tromperie</li>
-                    <li class="list-group-item">Trahison</li>
-                    <li class="list-group-item">Internet Explorer</li>
+                    <li class="list-group-item" id="Limbes">Limbes</li>
+                    <li class="list-group-item" id="Luxure">Luxure</li>
+                    <li class="list-group-item" id="Gourmandise">Gourmandise</li>
+                    <li class="list-group-item" id="Avarice">Avarice</li>
+                    <li class="list-group-item" id="Colère">Colère</li>
+                    <li class="list-group-item" id="Heresie">Heresie</li>
+                    <li class="list-group-item" id="Violence">Violence</li>
+                    <li class="list-group-item" id="Ruse-et-Tromperie">Ruse et Tromperie</li>
+                    <li class="list-group-item" id="Trahison">Trahison</li>
+                    <li class="list-group-item" id="Internet-Explorer">Internet Explorer</li>
                 </ul>
             </div>
 
