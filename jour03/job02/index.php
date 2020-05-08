@@ -102,7 +102,7 @@
                     <hr class="my-4">
                     <p>Le sens étendu désigne l'univers dans son ensemble.</p>
                     <button type="button" id="changeJumbotronTexte" class="btn btn-danger">Rebooter le Monde</button>
-                    <div class="spinner-border text-primary" role="status">
+                    <div id="spinner" class="" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
                     <nav aria-label="Page navigation example">
@@ -245,7 +245,7 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" id="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
             <div class="col-12 p-5"></div>

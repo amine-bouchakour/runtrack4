@@ -183,6 +183,10 @@ $('document').ready(function(){
 
 
 
+
+
+
+
   // BOUTON D,G,C ET MODAL
 
   tabToucheClavier = [];
@@ -229,18 +233,77 @@ $('document').ready(function(){
 
         }
     }
-
-
-
-
-
-
-
   })
 
 
 
+  // CHANGEMENT COULEUR SPINNER
+  var spinner = document.getElementById('spinner');
+  console.log(spinner);
 
+  tabCouleurSpinner = [
+    "primary",
+    "secondary",
+    "success",
+    "danger",
+    "warning",
+    "info",
+    "light",
+    "dark"
+  ];
+
+  var countStyle = tabCouleurSpinner.length;
+
+
+
+  sessionStorage.setItem('primary', 'text-primary');
+  sessionStorage.setItem('secondary','text-secondary');
+  sessionStorage.setItem('success','text-success');
+  sessionStorage.setItem('danger','text-danger');
+  sessionStorage.setItem('warning','text-warning');
+  sessionStorage.setItem('info','text-info');
+  sessionStorage.setItem('light','text-light');
+  sessionStorage.setItem('dark','text-dark');
+  
+  console.log(sessionStorage);
+
+
+  // Récupérer des données depuis sessionStorage
+  var data = sessionStorage.getItem('primary');
+  console.log(data);
+  spinner.classList.add(data);
+
+
+
+  // // Supprimer des données de sessionStorage
+  // sessionStorage.removeItem('clé');
+
+  // // Supprimer toutes les données de sessionStorage
+  // sessionStorage.clear();
+                  
+
+ 
+
+  $('#submit').click(function(event){
+
+    var mail = document.getElementById("exampleInputEmail1").value;
+    var password = document.getElementById("exampleInputPassword1").value;
+
+    if(mail != "" && password != ""){
+      
+      spinner.removeAttribute('class');
+      spinner.classList.add('spinner-border');
+
+
+      var style = Math.floor(Math.random() * Math.floor(countStyle));
+      var dataBis = sessionStorage.getItem(tabCouleurSpinner[style]);
+      
+      spinner.classList.add(dataBis);
+
+      
+    }
+
+  })
 
 
 })
