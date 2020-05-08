@@ -114,6 +114,7 @@ $('document').ready(function(){
 
 
 
+  // LORS DU CLIC SUR LA DIV DE DROITE 
   
     $("#Luxure").click(function(event)
     {
@@ -155,6 +156,30 @@ $('document').ready(function(){
     {
       document.getElementById("Internet-Explorer").classList.add("active");
     })
+
+
+
+
+  // BARRE DE PROGRESSION
+
+  $('#progressPlus').click(function(event){
+    console.log("Barre plus activé");
+
+    var rech = document.getElementById('barreProgression');
+
+    rech.style.width = (parseInt(rech.style.width, 10) + 10) + '%';
+
+  })
+
+  $('#progressMoins').click(function(event){
+    console.log("Barre moins activé");
+
+    var rech = document.getElementById('barreProgression');
+
+    rech.style.width = (parseInt(rech.style.width, 10) - 10) + '%';
+  })
+
+
 
 
 
