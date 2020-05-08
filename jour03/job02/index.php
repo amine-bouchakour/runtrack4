@@ -62,6 +62,8 @@
                     </div>
                 </div>
             </div>
+
+
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -78,7 +80,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                            <button type="button" class="btn btn-primary">Acheter</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Acheter</button>
                         </div>
                     </div>
                 </div>
@@ -142,8 +144,8 @@
             <div class="col-2 offset-7">Installation de AI 9000</div>
 
             <div class="row col-9 justify-content-center">
-                <div><svg class="bi bi-arrow-bar-left" id="progressMoins" style="margin-top:-12px" width="1em" height="1em"
-                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <div><svg class="bi bi-arrow-bar-left" id="progressMoins" style="margin-top:-12px" width="1em"
+                        height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M5.854 4.646a.5.5 0 00-.708 0l-3 3a.5.5 0 000 .708l3 3a.5.5 0 00.708-.708L3.207 8l2.647-2.646a.5.5 0 000-.708z"
                             clip-rule="evenodd" />
@@ -152,12 +154,13 @@
                             clip-rule="evenodd" />
                     </svg></div>
                 <div class="progress col-10 p-0 m-0">
-                    <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" id="barreProgression" role="progressbar"
-                        style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated"
+                        id="barreProgression" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0"
+                        aria-valuemax="100">
                     </div>
                 </div>
-                <div><svg class="bi bi-arrow-bar-right" id="progressPlus" style="margin-top:-12px" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
+                <div><svg class="bi bi-arrow-bar-right" id="progressPlus" style="margin-top:-12px" width="1em"
+                        height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z"
                             clip-rule="evenodd" />
@@ -204,7 +207,7 @@
                                 <div class="input-group-text">DogeCoin</div>
                             </div>
 
-                            <input type="text" class="form-control">
+                            <input type="text" id="inputUrl" class="form-control">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">.00</div>
                             </div>
@@ -214,12 +217,16 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Https://l33.lptf/dkwb/berslusconimkt/</div>
                             </div>
-                            <input type="text" class="form-control">
+                            <input type="text" id="inputUrlBis" class="form-control">
                         </div>
 
                     </div>
                 </form>
             </div>
+
+
+
+
 
             <!-- DIV EN BAS A DROITE -->
             <div class="col-2 offset-3">
@@ -242,6 +249,41 @@
                 </form>
             </div>
             <div class="col-12 p-5"></div>
+
+
+
+
+                        <!-- TEST TEST TEST -->
+
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modaltest" style="display: none">
+                Commander votre propre Papillon</button>
+
+
+            <div class="modal fade" id="Modaltest" tabindex="-1" role="dialog" aria-labelledby="ModaltestLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModaltestLabel">Recevez votre copie gratuite d'internet 2 !</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div id="login">Votre Login : </div>
+                            <div id="password">Votre Password : </div>
+                            <div id="url">Url 2 : </div>
+                            <div id="urlBis">Url 2.1 Beta : </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" id="fermer" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                            <button type="button" id="fermerBis" class="btn btn-primary" data-dismiss="modal">Confirmer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 

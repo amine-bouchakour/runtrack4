@@ -162,6 +162,7 @@ $('document').ready(function(){
 
   // BARRE DE PROGRESSION
 
+  // Augmentation
   $('#progressPlus').click(function(event){
     console.log("Barre plus activé");
 
@@ -171,6 +172,7 @@ $('document').ready(function(){
 
   })
 
+  // Diminution
   $('#progressMoins').click(function(event){
     console.log("Barre moins activé");
 
@@ -179,6 +181,62 @@ $('document').ready(function(){
     rech.style.width = (parseInt(rech.style.width, 10) - 10) + '%';
   })
 
+
+
+  // BOUTON D,G,C ET MODAL
+
+  tabToucheClavier = [];
+  tabTrue= ["D","G","C"];
+
+  document.addEventListener('keydown',(event)=>{
+    tabToucheClavier.push(event.key);
+
+    var countTabTouche = tabToucheClavier.length;
+
+    for(var i = 0; i < countTabTouche-2; i++){
+    
+        if(tabTrue[0] == tabToucheClavier[i] && tabTrue[1] == tabToucheClavier[i+1] && tabTrue[2] == tabToucheClavier[i+2]){
+
+          // Réinitialisation tableau touche clavier
+          tabToucheClavier = [];
+
+          var login = document.getElementById("inputLogin").value;
+          var password = document.getElementById("inputPassword").value;
+          var url2 = document.getElementById("inputUrl").value;
+          var url21 = document.getElementById("inputUrlBis").value;
+          console.log(login);
+          console.log(password);
+          console.log(url2);
+          console.log(url21);
+
+          document.getElementById("login").innerHTML = 'Votre login : @' + login;
+          document.getElementById("password").innerHTML = 'Votre password : ' + password + "@example.com";
+          document.getElementById("url").innerHTML = 'Url 2 : DogeCoin' + url2 + ".00";
+          document.getElementById("urlBis").innerHTML = 'Url 2.1 Beta : Https://l33.lptf/dkwb/berslusconimkt/' + url21;
+
+          var divModif = document.getElementById("Modaltest");
+          divModif.classList.add("show");
+          divModif.style.display = "block";
+
+          $("#fermer").click(function(event){
+            var divModif = document.getElementById("Modaltest");
+            divModif.classList.remove("show");
+          })
+          $("#fermerBis").click(function(event){
+            var divModif = document.getElementById("Modaltest");
+            divModif.classList.remove("show");
+          })
+
+        }
+    }
+
+
+
+
+
+
+
+  })
 
 
 
