@@ -20,24 +20,30 @@
 
 
 
-<body>
+<body class="Info link bg-light p-2">
 
 <?php
+include('header.php');
+
+if(isset($_SESSION['login'])){
 
 $tabJour = ["","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
-$tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h","19h","20h"];
+$tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h"];
 
 ?>
 <div class="row  justify-content-center">
 
-    <table class="table table-hover table-dark col-8 m-4">
+<div class="col-12 p-2 bg-warning" id="alignCenter"> <h1>Planning et Réservations</h1></div>
+
+    <table class="table table-hover table-dark col-8 m-2 p-2" id="border-radius">
 
         <thead>
             <tr>
                 <?php
                     for($i = 0; $i < count($tabJour); $i++ ){
                     ?>
-                        <th scope="col" id="alignCenter"><?php echo $tabJour[$i] ?></th>
+                        <!-- JOUR DE LA SEMAINE EN HAUT -->
+                        <th scope="col" id="alignCenter" class="p-3"><h4><?php echo $tabJour[$i] ?></h4></th>
                     <?php
                     }
                 ?>
@@ -54,7 +60,7 @@ $tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h","
 
             <tr>
                 <!-- HEURE A GAUCHE -->
-                <th scope="row" id="alignCenter"><?php echo $tabHeure[$j]; ?>
+                <th scope="row" id="alignCenter" class="p-3 bg-warning"><?php echo $tabHeure[$j]; ?>
                     <?php
 
                     for($k = 1; $k < count($tabJour); $k++){
@@ -67,13 +73,13 @@ $tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h","
                         // VERIFICATION CRENEAU LIBRE
 
                         $libre ="ok";
-                        
+
                         if($libre == "ok"){
                             ?>
-                                <div  id="alignCenter">
+                                <div id="alignCenter" class="p-2">
                             <?php
                             // contenu du planning
-                            echo "Libre";
+                            echo "<h6>Libre</h6>";
 
                             ?>
                                 </div>
@@ -97,6 +103,11 @@ $tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h","
     </table>
 </div>
 
+<?php }
+else{
+    header("location:connexion.php");
+}
+?>
 
 
 </body>

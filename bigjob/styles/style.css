@@ -1,9 +1,13 @@
 body{
     padding: 1%;
     margin: 0%;
-    background: rgb(222, 179, 100);
+    /* background: rgb(222, 179, 100); */
 }
 
 #alignCenter{
     text-align: center;
+}
+
+#border-radius{
+    border-radius: 0.4em;
 }
