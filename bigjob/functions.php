@@ -24,6 +24,9 @@ function inscription($login,$password,$confPassword,$email){
         $sql ="SELECT * FROM `users` WHERE login='".$login."'";
         $res= $DB -> query($sql);
         $info = $res ->fetch(PDO::FETCH_OBJ);
+      
+        $mailParts = explode('@', $email);
+        
 
     if(isset($login) && isset($password) && isset($confPassword) && isset($email)){
 
@@ -34,15 +37,21 @@ function inscription($login,$password,$confPassword,$email){
 
             if($password==$confPassword){
 
-                try{
-                    $infoUser= array('login'=>$login,'password'=>$passhash,'email'=>$email);
+                if ($mailParts[1] == "laplateforme.io"){
 
-                    $req = $DB ->prepare('INSERT INTO `users` (`login`,`password`,`email`) VALUE (:login,:password,:email)');
-                    $req -> execute($infoUser);
-                    header("location:connexion.php?login=$login");
+                    try{
+                        $infoUser= array('login'=>$login,'password'=>$passhash,'email'=>$email);
+
+                        $req = $DB ->prepare('INSERT INTO `users` (`login`,`password`,`email`) VALUE (:login,:password,:email)');
+                        $req -> execute($infoUser);
+                        header("location:connexion.php?login=$login");
+                    }
+                    catch(PDOException $e){
+                        echo "La requete d'inscription à échoué</br>";
+                    }
                 }
-                catch(PDOException $e){
-                    echo "La requete d'inscription à échoué</br>";
+                else{
+                    echo "Désolé, mais seul les étudiants de la Plateforme ont le droit de s'inscrire.";
                 }
             }
             else{

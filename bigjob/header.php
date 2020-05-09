@@ -6,6 +6,7 @@
         <a href="index.php">Index</a>
         <a href="profil.php">Profil</a>
         <a href="deconnexion.php">Déconnexion</a>
+        <a href="reservation.php">Réservation</a>
     <?php } 
     
     else{

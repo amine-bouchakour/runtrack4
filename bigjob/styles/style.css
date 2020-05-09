@@ -3,3 +3,7 @@ body{
     margin: 0%;
     background: rgb(222, 179, 100);
 }
+
+#alignCenter{
+    text-align: center;
+}
