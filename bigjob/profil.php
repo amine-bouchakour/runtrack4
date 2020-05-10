@@ -42,7 +42,7 @@ if(isset($_SESSION['login'])){
     <?php }
 
 else{
-    echo "Vous devez être connecté pour acceder à la page profil</br>";
+    echo header("location:connexion.php");
 } ?>
 
 </body>

@@ -5,7 +5,7 @@
     <?php if(isset($_SESSION['login'])){ ?>
         <div id="flexR">
             <div><a href="index.php">Acceuil</a></div>
-            <div><a href="reservation.php">Réservation</a></div>
+            <div><a href="reservation.php">Planning</a></div>
             <div><a href="profil.php">Profil</a></div>
             <div><a href="deconnexion.php">Déconnexion</a></div>
         </div>

@@ -24,7 +24,7 @@ function inscription($login,$password,$confPassword,$email){
         $sql ="SELECT * FROM `users` WHERE login='".$login."'";
         $res= $DB -> query($sql);
         $info = $res ->fetch(PDO::FETCH_OBJ);
-      
+
         $mailParts = explode('@', $email);
         
 
@@ -51,7 +51,7 @@ function inscription($login,$password,$confPassword,$email){
                     }
                 }
                 else{
-                    echo "Désolé, mais seul les étudiants de la Plateforme ont le droit de s'inscrire.";
+                    echo "Seul les étudiants de la Plateforme ont le droit de s'inscrire.";
                 }
             }
             else{
