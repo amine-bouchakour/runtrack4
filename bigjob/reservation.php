@@ -8,7 +8,7 @@
     <title>Réservation</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/reservation.css">
     <script src="js/Jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
@@ -20,7 +20,7 @@
 
 
 
-<body class="Info link bg-light p-2">
+<body class="Info link p-2 bg-light">
 
 <?php
 include('header.php');
@@ -31,11 +31,11 @@ $tabJour = ["","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"
 $tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h"];
 
 ?>
-<div class="row  justify-content-center">
+    <div id="titrePage" class="col-12 p-2 bg-warning" >Planning et Réservations</div>
+<div class="">
 
-<div class="col-12 p-2 bg-warning" id="alignCenter"> <h1>Planning et Réservations</h1></div>
 
-    <table class="table table-hover table-dark col-8 m-2 p-2" id="border-radius">
+    <table id="table" class="table-hover table-dark  " id="border-radius">
 
         <thead>
             <tr>
@@ -43,7 +43,7 @@ $tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h"];
                     for($i = 0; $i < count($tabJour); $i++ ){
                     ?>
                         <!-- JOUR DE LA SEMAINE EN HAUT -->
-                        <th scope="col" id="alignCenter" class="p-3"><h4><?php echo $tabJour[$i] ?></h4></th>
+                        <th id="tailleJour" scope="col"><?php echo $tabJour[$i] ?></th>
                     <?php
                     }
                 ?>
@@ -60,7 +60,7 @@ $tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h"];
 
             <tr>
                 <!-- HEURE A GAUCHE -->
-                <th scope="row" id="alignCenter" class="p-3 bg-warning"><?php echo $tabHeure[$j]; ?>
+                <th scope="row" id="tailleHeure" class="bg-warning"><?php echo $tabHeure[$j]; ?>
                     <?php
 
                     for($k = 1; $k < count($tabJour); $k++){
@@ -76,10 +76,10 @@ $tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h"];
 
                         if($libre == "ok"){
                             ?>
-                                <div id="alignCenter" class="p-2">
+                                <div id="divCrenau">
                             <?php
                             // contenu du planning
-                            echo "<h6>Libre</h6>";
+                            echo "Libre";
 
                             ?>
                                 </div>

@@ -1,6 +1,6 @@
 body{
     padding: 1%;
-    margin: 0%;
+    margin: 1%;
     /* background: rgb(222, 179, 100); */
 }
 
@@ -10,4 +10,28 @@ body{
 
 #border-radius{
     border-radius: 0.4em;
+}
+
+
+@media screen and (max-width : 479px){
+    body{
+    background-color:red;
+    padding: 2%;
+    }
+
+    #alignCenterTitre{
+        text-align: center;
+        margin-left:40%;
+    }
+}
+
+@media screen and (min-width : 480px) and (max-width : 959px){
+    body{
+        background-color:blue;
+        margin:0 5%;
+        }
+}
+
+@media screen and (min-width : 960px){
+    
 }
