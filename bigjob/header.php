@@ -13,9 +13,11 @@
     
     else{
     ?>
-        <a href="index.php">Index</a>
-        <a href="connexion.php">Connexion</a>
-        <a href="inscription.php">Inscription</a>
+    <div id="flexR">
+        <div><a href="index.php">Index</a></div>
+        <div><a href="connexion.php">Connexion</a></div>
+        <div><a href="inscription.php">Inscription</a></div>
+    </div>
     <?php } ?>
 
 </header>
