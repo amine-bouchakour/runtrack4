@@ -20,7 +20,9 @@
 
 
 
-<body class="Info link p-2 bg-light">
+<body class="Info link bg-light">
+
+
 
 <?php
 include('header.php');
@@ -31,7 +33,56 @@ $tabJour = ["","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"
 $tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h"];
 
 ?>
-    <div id="titrePage" class="col-12 p-2 bg-warning" >Planning et Réservations</div>
+<div id="titrePage" class="col-12 p-2 bg-warning" >Planning et Réservations</div>
+<br>
+
+<!-- RESERVATION CRENEAU -->
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Faire une demande de resérvation</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Avant propos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident placeat aspernatur quos ipsam delectus aliquid eius. Minus laborum quas debitis reprehenderit eligendi animi ipsam culpa eveniet laboriosam. Praesentium quas pariatur aut deserunt laborum ab ea, voluptatum beatae ipsam quisquam tempora sunt numquam nisi totam unde dolore voluptatibus quae odit, iure dignissimos aspernatur eum inventore voluptates. Minima at dolor aut repudiandae fuga, libero numquam assumenda ratione consequuntur natus accusamus, rerum inventore. Minima accusantium repellat, fugiat veniam maiores beatae possimus excepturi totam, eius similique officiis voluptatem eveniet eligendi! Consequuntur modi temporibus iste obcaecati in sequi accusamus incidunt? Totam voluptate minima aperiam cupiditate.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#exampleModalCenter2">Continuer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Demande d'autorisation d'accès à la Plateforme_</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis consequuntur labore tenetur earum soluta ea magni aliquam, blanditiis distinctio et est alias, enim in dolor. In vitae, numquam quod non, eos consectetur beatae quam veritatis animi optio odio aspernatur libero nihil vel illum a delectus? Vel sapiente, voluptatem sunt quis deserunt reiciendis, beatae earum similique exercitationem dolorem accusamus, commodi consectetur?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Confirmer la demande</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="">
 
 
@@ -76,7 +127,7 @@ $tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h"];
 
                         if($libre == "ok"){
                             ?>
-                                <div id="divCrenau">
+                                <div id="divCrenauLibre">
                             <?php
                             // contenu du planning
                             echo "Libre";
@@ -86,7 +137,15 @@ $tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h"];
                             <?php
                         }
                         else{
-                            echo "Pas libre";
+                            ?>
+                            <div id="divCrenau">
+                            <?php
+                            // contenu du planning
+                            echo "Libre";
+
+                            ?>
+                                </div>
+                            <?php
                         }
                             ?> 
                     </td>      
@@ -102,6 +161,8 @@ $tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h"];
 
     </table>
 </div>
+
+
 
 <?php }
 else{

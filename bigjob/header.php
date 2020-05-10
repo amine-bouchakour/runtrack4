@@ -1,12 +1,14 @@
 <?php session_start(); ?>
-
+<link rel="stylesheet" href="styles/reservation.css">
 <header>
 
     <?php if(isset($_SESSION['login'])){ ?>
-        <a href="index.php">Index</a>
-        <a href="reservation.php">Réservation</a>
-        <a href="profil.php">Profil</a>
-        <a href="deconnexion.php">Déconnexion</a>
+        <div id="flexR">
+            <div><a href="index.php">Acceuil</a></div>
+            <div><a href="reservation.php">Réservation</a></div>
+            <div><a href="profil.php">Profil</a></div>
+            <div><a href="deconnexion.php">Déconnexion</a></div>
+        </div>
     <?php } 
     
     else{

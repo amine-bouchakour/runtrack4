@@ -10,11 +10,11 @@ html{
     body{
         padding: 1%;
         text-align: center; 
-        margin:2%;
+        margin:0% 2%;
     }
     #table{
         margin:1% auto;
-        width: 80%;
+        width: 90%;
     }
 
     #tailleJour{
@@ -27,11 +27,27 @@ html{
         padding: 0% 2%;
         width: 10%;
     }
+    #flexR{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        font-size: x-large;
+        margin-bottom: 1%;
+        color:rgb(234, 71, 71);
+    }
 
     #divCrenau{
         font-size: 20px;
         font-style: italic;
         padding: 6% 0%;
+        color:rgb(110, 183, 110);
+    }
+
+    #divCrenauLibre{
+        font-size: 20px;
+        font-style: italic;
+        padding: 6% 0%;
+        color:rgb(110, 183, 110);
     }
     
     #border-radius{
@@ -49,7 +65,7 @@ html{
         background-color:blue;
         padding : 3%;
         text-align: center;
-        margin: 0% 5%;
+        margin: -1% 2%;
         }
 
         #table{
@@ -60,6 +76,13 @@ html{
         #tailleJour{
             font-size: 13px;
             padding: 2%;
+        }
+        #flexR{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            font-size: large;
+            margin-bottom: 1%;
         }
     
         #tailleHeure{
@@ -83,6 +106,7 @@ html{
     body{
         text-align: center; 
         padding: 2%;
+        margin:0% 2%;
     }
 
     #table{
@@ -99,6 +123,16 @@ html{
     #tailleHeure{
         font-size: 9px;
         text-align: center;
+    }
+    #flexR{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width:100%;
+        padding:0% 10%;
+        justify-content: space-evenly;
+        font-size: medium;
+        margin-bottom: 1%;
     }
 
     #divCrenau{
