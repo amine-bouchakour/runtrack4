@@ -16,7 +16,8 @@
     </script>
 </head>
 
-<body>
+<body class="Info link bg-light">
+
 
 <?php 
 include('header.php');

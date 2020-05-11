@@ -20,7 +20,7 @@
 
 <?php include('header.php'); ?>
 
-<body>
+<body class="Info link bg-light">
     
 </body>
 </html>

@@ -1,0 +1,18 @@
+#reponseYes{
+color: rgb(77, 210, 77);
+font-size: large;
+font-weight: bold;
+}
+
+
+#reponseNo{
+color:rgb(255, 74, 74);
+font-size: large;
+font-weight: bold;
+}
+
+
+#reponseAttente{
+color:rgb(255, 255, 83);
+font-size: large;
+}

@@ -14,3 +14,18 @@ body{
 table{
     /* width: 60%; */
 }
+
+#reponseYes{
+color: rgb(77, 210, 77);
+font-size: large;
+border-radius : 0.3em;
+font-weight: bold;
+}
+
+
+#reponseNo{
+color:rgb(255, 74, 74);
+font-size: large;
+border-radius : 0.3em;
+font-weight: bold;
+}

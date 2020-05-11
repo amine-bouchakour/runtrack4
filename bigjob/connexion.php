@@ -15,7 +15,9 @@
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
     </script>
 </head>
-<body>
+
+<body class="Info link bg-light">
+
 
 <?php 
 include('header.php');

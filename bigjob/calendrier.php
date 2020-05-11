@@ -22,7 +22,8 @@
     <title>Jquery Bootstrap Year Calendar - Basic Example</title>
 </head>
 
-<body>
+<body class="Info link bg-light">
+
 <?php 
 include("header.php");
 include('functions.php'); 
@@ -82,6 +83,7 @@ if(isset($_SESSION['login'])){
     if(!$res && !$res2){
         $sql = ("INSERT INTO `demande_autorisation` (`login`,`date_reservation`,`date_demande`) VALUE ('".$_SESSION['login']."','".$dateResa."','".$dateDemande."')");
         $req = $DB-> query($sql);
+        header("location:profil.php");
     }
     else{
         ?>

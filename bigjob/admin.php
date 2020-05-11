@@ -17,15 +17,15 @@
     </script>
 </head>
 
-<body class="bg-light">
+<body class="Info link bg-light">
 
 <?php
 include("header.php");
 include("functions.php");
 ?>
 
-
-<!-- TABLEAU UTILISATEURS -->
+<br><br><br>
+<!-- TABLEAU DEMANDE D'ACCES -->
 <h2>Les demandes de réservations</h2>
 <table class="table table-hover table-bordered table-dark">
 <thead>
@@ -41,11 +41,8 @@ include("functions.php");
 
 <?php
 
-
-
-
 // REQUETE TOUTES LES DEMANDES D'AUTORISATION EN COURS
-$sql = ('SELECT login,date_reservation,date_demande FROM `demande_autorisation` ORDER BY date_demande');
+$sql = ('SELECT login,date_reservation,date_demande FROM `demande_autorisation` ORDER BY date_reservation');
 $req = $DB -> query($sql);
 $i=1;
 while($res = $req -> fetch(PDO::FETCH_OBJ)){
@@ -63,8 +60,8 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
         <form method="POST">
             <input type="hidden" name="droitDate" value="<?php echo $res->date_reservation ?>">
             <input type="hidden" name="droitLogin" value="<?php echo $res->login ?>">
-            <input type="submit" name="accepter" value="Accepter">
-            <input type="submit" name="refuser" value="Refuser">
+            <input type="submit" name="accepter" id="reponseYes" value="Accepter">
+            <input type="submit" name="refuser" id="reponseNo" value="Refuser">
         </form>
     </td> 
         </tr> 
@@ -111,55 +108,255 @@ if(isset($_POST['refuser'])){
 
 <!-- TABLEAU ADMNISTRATEUR -->
 <table class="table table-hover table-bordered bg-info">
-    <h2>Les droits d'accès et de modification</h2>
+    <br><br><br>
+    <h2>Les droits d'accès (Admnistration du site)</h2>
 <thead>
 <tr>
   <th scope="col">#</th>
   <th scope="col">Login</th>
   <th scope="col">Droits</th>
   <th scope="col">Date ajout</th>
-  <th scope="col">Modifier droits</th>
+  <th scope="col">Ajouter par</th>
+
+  <?php if($_SESSION['id_droits'] == "3" ){
+    ?>
+        <th scope="col">Confirmer</th>
+    <?php
+    }
+    ?>
 </tr>
 </thead>
 <tbody>
-<tr>
-    <th scope="row">Ajout</th>
-    <td><input type="text"></td>
-    <td><input type="text"></td>
-    <td>XXXXXXXXXXXXXXXXX</td>
-    <td><input type="text"></td>
-</tr>
-<?php
 
+<?php 
 // REQUETE TOUTES LES PERSONNES ETANT DANS L'ADMNISTRATION DU SITE
-$sql = ('SELECT * FROM `admin`');
+$sql = ('SELECT login,droits,date_ajout,ajouter_par FROM `admin`');
 $req = $DB -> query($sql);
-
+$i=1;
 while($res = $req -> fetch(PDO::FETCH_OBJ)){
     ?>
-        <tr><th scope="row">1</th> 
+        <tr><th scope="row">#<?php echo $i++; ?></th> 
     <?php
     foreach($res as $info){
+        if($res->droits == "2"){$res->droits = "Modérateur";}
+        if($res->droits == "3"){$res->droits = "Administateur";}
         ?><td> <?php
         echo $info;
         ?> </td> <?php
     }
     ?>
+      <?php if($_SESSION['id_droits'] == "3" ){
+    ?>
         <td>
             <form method="POST">
-                <input type="hidden" name="droits" value="<?php echo $res->login ?>">
-                <input type="submit" name="retrograder" value="Rétrograder">
-                <input type="submit" name="promotion" value="Promotion">
+                <input type="hidden" name="loginDroits" value="<?php echo $res->login ?>">
+                <input type="submit" name="retrograder" id="reponseNo" value="Rétrograder">
+                <input type="submit" name="promotion" id="reponseYes" value="Promotion">
             </form>
         </td> 
+        <?php
+    }
+    ?>
         </tr> 
     <?php
+}
+
+// PROMOTION
+if(isset($_POST['promotion'])){
+    $login = $_POST['loginDroits'];
+
+    $sqlVerif = ("SELECT id_droits FROM `users` WHERE login='".$login."'");
+    $reqVerif = $DB -> query($sqlVerif);
+    $resVerif = $reqVerif -> fetch(PDO::FETCH_OBJ);
+
+    $droits = $resVerif ->id_droits;
+
+    if($droits < 3){
+        $droits = $droits +1;
+        $sqlUpdate = ("UPDATE `users`SET id_droits='".$droits."' WHERE login='".$login."'");
+        $reqUpdate = $DB -> query($sqlUpdate);
+
+        $sqlUpdateBis = ("UPDATE `admin`SET droits='".$droits."' WHERE login='".$login."'");
+        $reqUpdateBis = $DB -> query($sqlUpdateBis);
+
+        if($_SESSION['login'] == $login){
+            $_SESSION['id_droits']=$droits;
+        }
+        header("location:admin.php");
+    }
 
 }
+
+// RETROGRADATION
+if(isset($_POST['retrograder'])){
+    $login = $_POST['loginDroits'];
+
+    $sqlVerif = ("SELECT id_droits FROM `users` WHERE login='".$login."'");
+    $reqVerif = $DB -> query($sqlVerif);
+    $resVerif = $reqVerif -> fetch(PDO::FETCH_OBJ);
+
+    $droits = $resVerif ->id_droits;
+
+    if($droits > 1){
+        $droits = $droits -1;
+        $sqlUpdate = ("UPDATE `users`SET id_droits='".$droits."' WHERE login='".$login."'");
+        $reqUpdate = $DB -> query($sqlUpdate);
+
+        $sqlUpdateBis = ("UPDATE `admin`SET droits='".$droits."' WHERE login='".$login."'");
+        $reqUpdateBis = $DB -> query($sqlUpdateBis);
+
+        if($_SESSION['login'] == $login){
+            $_SESSION['id_droits']=$droits;
+        }
+        header("location:admin.php");
+    }
+
+    if($droits == 1){
+        $sqlDelete = ("DELETE FROM `admin` WHERE login='".$login."'");
+        $reqDelete = $DB -> query($sqlDelete);
+    }   
+}
+?>
+
+
+
+
+<!-- AJOUTER UN ADMINISTRATEUR -->
+<?php if($_SESSION['id_droits'] == "3" ){
+            ?>
+<tr>
+    <th scope="row" >Ajouter un gestionnaire</th>
+    <form method="POST">
+        <td><input type="text" name="login" style="border-radius: 0.5em; text-align:center;" placeholder="Login"></td>
+        <td><select name="droits">
+            <OPTION>Choisir Droits
+            <OPTION>Modérateur
+            <OPTION>Administateur
+        </select></td>
+        <td>XXXXXXXXXXXXXXXXX</td>
+        <td>XXXXXXXXXXXXXXXXX</td>
+        <td><input type="submit" name="ajouter" id="reponseYes" value="Ajouter"></td>
+     
+    </form>
+</tr>
+<?php 
+        }
+        ?>
+<?php
+
+if(isset($_POST['ajouter'])){
+
+    $sqlVerif = ("SELECT * FROM `admin` WHERE login='".$_POST['login']."'");
+    $reqVerif = $DB -> query($sqlVerif);
+    $resVerif = $reqVerif -> fetch(PDO::FETCH_OBJ);
+
+    if(!$resVerif){
+
+        $sqlVerif2 = ("SELECT * FROM users WHERE login='".$_POST['login']."'");
+        $reqVerif2 = $DB -> query($sqlVerif2);
+        $resVerif2 = $reqVerif2 -> fetch(PDO::FETCH_OBJ);
+
+        $date = date("Y-m-d");
+
+        if($resVerif2){
+
+            if($_POST['droits'] != "Choisir Droits"){
+
+                if($_POST['droits'] == "Modérateur"){
+                    $droits = 2;
+                }
+                if($_POST['droits'] == "Administateur"){
+                    $droits = 3;
+                }
+
+                $sqlAjout = ("INSERT INTO admin (`login`,`droits`,`date_ajout`,`ajouter_par`) VALUE ('".$_POST['login']."','".$droits."','".$date. "','".$_SESSION['login']."')");
+                $reqAjout = $DB -> query($sqlAjout);
+
+                $sqlUpdate = ("UPDATE `users`SET id_droits='".$droits."' WHERE login='".$_POST['login']."'");
+                $reqUpdate = $DB -> query($sqlUpdate);
+                header("location:admin.php");
+            }
+            else{
+                echo "<h5 style='color:red;'>Merci de choisir un droit d'accès pour cette utilisateur</h5>";
+            }
+
+        }
+        else{
+            echo "<h5 style='color:red;'>L'utilisateur n'existe pas dans la base de donnée</h5>";
+        }
+    }
+    else{
+        echo "<h5 style='color:red;'>L'utilisateur est déjà présent dans la gestion admninistrative du site</h5>";
+    }
+
+
+}
+
 
 ?>
   </tbody>
 </table>
+
+<br><br><br>
+<!-- TABLEAU UTILISATEURS SITE -->
+<h2>Les Utilisateurs du site</h2>
+<table class="table table-hover table-bordered table-dark">
+<thead>
+<tr>
+  <th scope="col">#</th>
+  <th scope="col">Login</th>
+  <th scope="col">Email</th>
+  <th scope="col">Id_droits</th>
+  <th scope="col">Supprimer Compte</th>
+</tr>
+</thead>
+<tbody>
+
+<?php
+// REQUETE TOUTES LES PERSONNES UTILISATEUR STANDARD DU SITE
+$sql = ('SELECT login,email,id_droits FROM `users` WHERE id_droits=1');
+$req = $DB -> query($sql);
+$i=1;
+while($res = $req -> fetch(PDO::FETCH_OBJ)){
+    ?>
+        <tr><th scope="row">#<?php echo $i++; ?></th> 
+    <?php
+    foreach($res as $info){
+        if($res->id_droits == 1){ $res->id_droits = "Utilisateurs";}
+        ?><td> <?php
+        echo $info;
+        ?> </td> <?php
+    }
+    ?>
+      <?php if($_SESSION['id_droits'] == "3" ){
+    ?>
+        <td>
+            <form method="POST">
+                <input type="hidden" name="login" value="<?php echo $res->login ?>">
+                <input type="submit" name="supprimer" id="reponseNo" value="Supprimer">
+            </form>
+        </td> 
+        <?php
+    }
+    ?>
+        </tr> 
+    <?php
+}
+?>
+ </tbody>
+</table>
+
+<?php
+
+// SUPPRESSION COMPTE
+if(isset($_POST['supprimer'])){
+    $login = $_POST['login'];
+
+    $sqlDelete = ("DELETE FROM `users` WHERE login='".$login."'");
+    $reqDelete = $DB -> query($sqlDelete);
+}
+?>
+
 
 </body>
 </html>

@@ -5,8 +5,8 @@
     <?php if(isset($_SESSION['login'])){ ?>
         <div id="flexR">
             <div><a href="index.php">Acceuil</a></div>
-            <div><a href="reservation.php">Planning</a></div>
-            <?php if($_SESSION['login'] == "admin" || $_SESSION['login'] == "moderateur" ){
+            <div><a href="reservation.php">Réservation</a></div>
+            <?php if($_SESSION['id_droits'] == "2" || $_SESSION['id_droits'] == "3" ){
                 ?>
                     <div><a href="admin.php">Page Admin</a></div>
                 <?php

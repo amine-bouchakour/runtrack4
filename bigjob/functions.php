@@ -42,7 +42,7 @@ function inscription($login,$password,$confPassword,$email){
                     try{
                         $infoUser= array('login'=>$login,'password'=>$passhash,'email'=>$email);
 
-                        $req = $DB ->prepare('INSERT INTO `users` (`login`,`password`,`email`) VALUE (:login,:password,:email)');
+                        $req = $DB ->prepare('INSERT INTO `users` (`login`,`password`,`email`,`id_droits`) VALUE (:login,:password,:email,1)');
                         $req -> execute($infoUser);
                         header("location:connexion.php?login=$login");
                     }
@@ -73,10 +73,9 @@ function connexion ($login,$password){
         global $DB;
 
     try{
-        $sql="SELECT id as id_user,login,password FROM `users` WHERE login='".$login."'";
+        $sql="SELECT id as id_user,login,password,id_droits FROM `users` WHERE login='".$login."'";
         $res = $DB->query($sql);
         $info = $res->fetch(PDO::FETCH_OBJ);
-        // print_r($info);
     }
 
     catch(PDOException $e){
@@ -89,6 +88,7 @@ function connexion ($login,$password){
         if($passverify==$info->password){
             $_SESSION['id_user']=$info->id_user;
             $_SESSION['login']=$info->login;
+            $_SESSION['id_droits']=$info->id_droits;
             header('location:index.php');
         }
         else{
