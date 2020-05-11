@@ -87,7 +87,7 @@ $tabHeure = ["08h","09h","10h","11h","12h","13h","14h","15h","16h","17h","18h"];
 <div class="">
 
 
-    <table id="table" class="table-hover table-dark  " id="border-radius">
+    <table id="table" class="table-hover table-dark" id="border-radius">
 
         <thead>
             <tr>

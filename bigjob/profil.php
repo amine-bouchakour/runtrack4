@@ -39,7 +39,114 @@ if(isset($_SESSION['login'])){
             updateProfil($_POST['login'],$_POST['password'],$_POST['confPassword']);
         } ?>
     </section>
-    <?php }
+
+
+
+    <!-- TABLEAU UTILISATEURS -->
+    <h2>Les demandes de réservations</h2>
+    <table class="table table-hover table-bordered table-dark">
+    <thead>
+    <tr>
+    <th scope="col">#</th>
+    <th scope="col">Date de réservation</th>
+    <th scope="col">Demande fait le</th>
+    <th scope="col">Statut</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <?php
+
+
+
+
+    // REQUETE TOUTES LES DEMANDES D'AUTORISATION EN COURS
+    $sql = ("SELECT date_reservation,date_demande FROM `demande_autorisation` WHERE login='".$_SESSION['login']."'");
+    $req = $DB -> query($sql);
+    $i=1;
+
+    while($res = $req -> fetch(PDO::FETCH_OBJ)){
+
+        ?>
+            <tr><th scope="row"><?php echo $i++ ?></th> 
+        <?php
+        foreach($res as $info){
+            ?><td> <?php
+            echo $info;
+            ?> </td>
+            <?php
+        }
+        ?>
+        <td>
+            <?php echo "En Attente"; ?>
+        </td> 
+            </tr> 
+        <?php
+    } ?>
+
+
+
+
+
+
+
+    <!-- // REPONSE DEMANDE -->
+    <table class="table table-hover table-bordered table-dark">
+        <h2>Les réponses aux demandes</h2>
+    <thead>
+    <tr>
+    <th scope="col">#</th>
+    <th scope="col">Date de réservation</th>
+    <th scope="col">Formateur</th>
+    <th scope="col">Réponse</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <?php
+
+
+     // REQUETE TOUTES LES DEMANDES D'AUTORISATION EN COURS
+    $sql = ("SELECT date_reservation,admin_user FROM `reservation` WHERE login='".$_SESSION['login']."'");
+    $req = $DB -> query($sql);
+    $i=1;
+    while($res = $req -> fetch(PDO::FETCH_OBJ)){
+        
+        ?>
+            <tr><th scope="row"><?php echo $i++ ?></th> 
+        <?php
+        foreach($res as $info){
+            ?><td> <?php
+            echo $info;
+            ?> </td>
+            <?php
+        }
+        ?>
+        <td>
+            <?php 
+            $dateResa = $res ->date_reservation;
+            
+            $sqlVerif = ("SELECT * FROM reservation WHERE login='".$_SESSION['login']."' AND date_reservation='".$dateResa."'");
+            $reqVerif = $DB -> query($sqlVerif);
+            $resVerif = $reqVerif -> fetch(PDO::FETCH_OBJ);
+
+            $reponse = $resVerif ->reponse;
+            
+            if($reponse == "yes"){
+               echo "Accepter";
+            }
+            
+            if($reponse =="no"){
+                echo "Refuser";
+            }
+            
+            ?>
+
+        </td> 
+            </tr> 
+        <?php
+    }
+    }
 
 else{
     echo header("location:connexion.php");

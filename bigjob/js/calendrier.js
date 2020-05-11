@@ -72,12 +72,12 @@ $('document').ready(function(){
                 }
                 
                 else{
-                    $("#date").text("La date " + dateChoisie + " est inférieur au jour actuelle (Nous sommes le " + jour + "), la réservation est donc impossible.");
+                    $("#date").text("La date " + dateChoisie + " est inférieur au jour actuelle (Nous sommes le " + jour + "), la réservation est impossible.");
                 }
                 
             }
             else{
-                $("#date").text("La date " + dateChoisie + " est inférieur au mois actuelle, la réservation est donc impossible.");
+                $("#date").text("La date " + dateChoisie + " est inférieur au mois actuelle, la réservation est impossible.");
             }
             if(month > mois){
                 // affichage date choisie dans modal
@@ -100,7 +100,7 @@ $('document').ready(function(){
 
         }
         else{
-            $("#date").text("La date " + dateChoisie + " est inférieur à l'année actuelle, la réservation est donc impossible.");
+            $("#date").text("La date " + dateChoisie + " est inférieur à l'année actuelle, la réservation est impossible.");
         }
         
     })
