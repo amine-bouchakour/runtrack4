@@ -114,7 +114,7 @@ if(isset($_SESSION['login'])){
     <?php }
 
 else{
-    echo header("location:connexion.php");
+    header("location:connexion.php");
 } ?>
 
 <script src="js/calendrier.js"></script>

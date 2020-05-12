@@ -153,7 +153,7 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
     $newDate = $date[8].$date[9]."/".$date[5].$date[6]."/".$date[0].$date[1].$date[2].$date[3];
     $res ->date_ajout = $newDate;
     ?>
-        <tr><th scope="row">#<?php echo $i++; ?></th> 
+        <tr><th scope="row"><?php echo $i++; ?></th> 
     <?php
     foreach($res as $info){
         if($res->droits == "2"){$res->droits = "Modérateur";}
@@ -341,7 +341,7 @@ $req = $DB -> query($sql);
 $i=1;
 while($res = $req -> fetch(PDO::FETCH_OBJ)){
     ?>
-        <tr><th scope="row">#<?php echo $i++; ?></th> 
+        <tr><th scope="row"><?php echo $i++; ?></th> 
     <?php
     foreach($res as $info){
         if($res->id_droits == 1){ $res->id_droits = "Utilisateurs";}

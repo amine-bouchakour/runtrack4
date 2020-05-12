@@ -24,11 +24,7 @@ include('header.php');
 include('functions.php'); 
 
 if(isset($_SESSION['login'])){
-    $infoUser= infoUser($_SESSION['login']);
     ?>  
-        <?php  if(isset($_POST['modifProfil'])){
-            updateProfil($_POST['login'],$_POST['password'],$_POST['confPassword']);
-        } ?>
 <br><br>
 
     <h2>Vos demandes d'autorisations</h2>
@@ -79,7 +75,8 @@ if(isset($_SESSION['login'])){
         </td> 
             </tr> 
         <?php
-    } ?>
+    } 
+    ?>
 
 </tbody>
 </table>
@@ -94,7 +91,7 @@ if(isset($_SESSION['login'])){
     <th scope="col" class="Info link bg-warning" id="intitule">Réponses</th>
     <th scope="col">Date de réservation</th>
     <th scope="col">Formateur</th>
-    <th scope="col">Réponse</th>
+    <th scope="col">Status</th>
     </tr>
     </thead>
     <tbody>
@@ -124,7 +121,8 @@ if(isset($_SESSION['login'])){
         $reponse = $resVerif ->reponse;
 
         foreach($res as $info){
-            ?><td <?php 
+            ?>
+            <td <?php 
             if(isset($reponse)){ 
                 if($reponse == "yes"){
                     echo "id='reponseYes'";
@@ -135,7 +133,8 @@ if(isset($_SESSION['login'])){
             }?>> 
             <?php
             echo $info;
-            ?> </td>
+            ?> 
+            </td>
             <?php
         }
         ?>
@@ -159,22 +158,29 @@ if(isset($_SESSION['login'])){
     ?>
     </tbody>
     </table>
-    </section>
 
     <form method="POST">
-        <input type="submit" name="effacer" class="bg-dark text-light" id="effaceHisto" value="Effacer historique refus">
+        <input type="submit" name="effacer" class="bg-dark text-light" id="effaceHisto" value="Effacer historique refus"><br>
+        <input type="submit" name="effacerDate" class="bg-dark text-light" id="effaceHisto" value="Effacer date dépassé">
     </form>
+    </section>
 
     <?php
         if(isset($_POST['effacer'])){
-            $sqlDelete = ("DELETE FROM `reservation` WHERE login='".$_SESSION['login']."' && reponse='no'");
+            $sqlDelete = ("DELETE FROM `reservation` WHERE login='".$_SESSION['login']."' AND reponse='no'");
             $reqDelete = $DB -> query($sqlDelete);
+            // header('Location:profil.php');
+        }
+        if(isset($_POST['effacerDate'])){
+            $dateActuelle = date("Y-m-d");
+            $sqlDeleteDate = ("DELETE FROM `reservation` WHERE login='".$_SESSION['login']."' AND date_reservation<'".$dateActuelle."'");
+            $reqDeleteDate = $DB -> query($sqlDeleteDate);
             // header('location:profil.php');
         }
 }
 
 else{
-    echo header("location:connexion.php");
+    header("location:connexion.php");
 } ?>
 
 </body>

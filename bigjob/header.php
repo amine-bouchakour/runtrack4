@@ -12,7 +12,7 @@
                 <?php
             } ?>
             <div><a href="profil.php">Profil</a></div>
-            <div><a href="deconnexion.php">Déconnexion</a></div>
+            <div><a href="deconnexion.php">Se déconnecter</a></div>
         </div>
     <?php } 
     
