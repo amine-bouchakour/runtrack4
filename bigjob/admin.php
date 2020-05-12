@@ -328,7 +328,7 @@ if(isset($_POST['ajouter'])){
   <th scope="col" class="Info link bg-warning" id="intitule">Utilisateurs</th>
   <th scope="col">Login</th>
   <th scope="col">Email</th>
-  <th scope="col">Id_droits</th>
+  <th scope="col">Droits</th>
   <th scope="col">Supprimer Compte</th>
 </tr>
 </thead>
