@@ -7,14 +7,14 @@ padding:0;
 
 
 #reponseYes{
-color: rgb(77, 210, 77);
+color: rgb(145, 214, 145);
 font-size: 1.1vw;
 font-weight: bold;
 }
 
 
 #reponseNo{
-color:rgb(255, 74, 74);
+color:rgb(253, 124, 124);
 font-size: 1vw;
 font-weight: bold;
 }
@@ -37,6 +37,9 @@ font-size: large;
     margin:1.5% auto;
     width: 60%;
     font-size: 1.1vw;
+    }
+    section{
+    margin: 1% auto 3%;
     }
 
     #table{

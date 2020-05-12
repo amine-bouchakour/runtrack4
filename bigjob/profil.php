@@ -29,13 +29,12 @@ if(isset($_SESSION['login'])){
         <?php  if(isset($_POST['modifProfil'])){
             updateProfil($_POST['login'],$_POST['password'],$_POST['confPassword']);
         } ?>
-    </section>
+<br><br>
 
-
-    <br><br><br>
+    <h2>Vos demandes d'autorisations</h2>
+    <section>
     <!-- TABLEAU UTILISATEURS -->
     <table class="table table-hover table-bordered table-dark" id="table">
-    <h2>Vos demandes d'autorisations</h2>
     <thead>
     <tr>
     <th scope="col" class="Info link bg-warning" id="intitule">Demandes</th>
@@ -84,12 +83,12 @@ if(isset($_SESSION['login'])){
 
 </tbody>
 </table>
-        <br><br>
+    </section>
 
-
+    <h2>Les réponses</h2>
+    <section>
     <!-- // REPONSE DEMANDE -->
     <table class="table table-hover table-bordered table-dark" id="table">
-        <h2>Les réponses</h2>
     <thead>
     <tr>
     <th scope="col" class="Info link bg-warning" id="intitule">Réponses</th>
@@ -160,6 +159,7 @@ if(isset($_SESSION['login'])){
     ?>
     </tbody>
     </table>
+    </section>
 
     <form method="POST">
         <input type="submit" name="effacer" class="bg-dark text-light" id="effaceHisto" value="Effacer historique refus">

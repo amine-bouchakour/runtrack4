@@ -30,8 +30,9 @@ include("functions.php");
 ?>
 <br><br>
 <!-- TABLEAU DEMANDE D'ACCES -->
-<table class="table table-hover table-bordered table-dark" id="table">
     <h2>Les demandes de réservations</h2>
+<section>
+<table class="table table-hover table-bordered table-dark" id="table">
 <thead>
 <tr class="text-light">
   <th scope="col" class="Info link bg-warning" id="intitule">Demande</th>
@@ -115,16 +116,15 @@ if(isset($_POST['refuser'])){
 
 
 ?>
+</tbody>
+</table>
 
+</section>
 
-
-
-
-
+    <h2>Les droits d'accès (Admnistration du site)</h2>
+<section>
 <!-- TABLEAU ADMNISTRATEUR -->
 <table class="table table-hover table-bordered bg-info" id="table">
-    <br><br><br>
-    <h2>Les droits d'accès (Admnistration du site)</h2>
 <thead>
 <tr class="text-light">
   <th scope="col" class="Info link bg-warning" id="intitule">Accès</th>
@@ -314,10 +314,14 @@ if(isset($_POST['ajouter'])){
 ?>
   </tbody>
 </table>
+</section>
 
-<br><br><br>
-<!-- TABLEAU UTILISATEURS SITE -->
+
+
+
 <h2>Les Utilisateurs du site</h2>
+<section>
+<!-- TABLEAU UTILISATEURS SITE -->
 <table class="table table-hover table-bordered table-dark" id="table">
 <thead>
 <tr>
@@ -363,6 +367,8 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
 ?>
  </tbody>
 </table>
+</section>
+
 
 <?php
 
