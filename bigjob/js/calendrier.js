@@ -93,7 +93,7 @@ $('document').ready(function(){
                 anneeHidden.value = year;
 
                 var inputResa = document.getElementById("validerResa");
-                inputResa.textContent= "Confirmer et valider la demande";
+                inputResa.textContent= "Envoyer la demande";
                 console.log(inputResa);
             }
          

@@ -1,3 +1,11 @@
+html{
+width: 100%;
+height: 100%;
+margin:0;
+padding:0;
+}
+
+
 #reponseYes{
 color: rgb(77, 210, 77);
 font-size: large;
@@ -15,4 +23,23 @@ font-weight: bold;
 #reponseAttente{
 color:rgb(255, 255, 83);
 font-size: large;
+}
+
+/* ORDINATEUR TAILLE */
+@media screen and (min-width:960px){
+    body{
+    padding: 1%;
+    text-align: center; 
+    margin:0% 2%;
+    }
+
+    table{
+    margin:1.5% auto;
+    width: 60%;
+    font-size: 1.1vw;
+    }
+
+    td{
+        padding:2%;
+    }
 }

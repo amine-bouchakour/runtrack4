@@ -1,13 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Javascripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -15,11 +12,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-    <!-- Project Files -->
     <link rel="stylesheet" href="js/jquery.bootstrap.year.calendar.css">
     <script src="js/jquery.bootstrap.year.calendar.js"></script>
-    <!--Title-->
-    <title>Jquery Bootstrap Year Calendar - Basic Example</title>
+    <title>Calendrier</title>
 </head>
 
 <body class="Info link bg-light">
@@ -98,7 +93,7 @@ if(isset($_SESSION['login'])){
                 </button>
             </div>
             <div class="modal-body">
-            Vous avez déjà fait une demande d'autorisation pour ce jour.</br>Elle à été peut être valider, jeter un coup d'oeil à votre profil.</br></br>Dans le cas contraire, merci de patienter</br> vous aurez une réponse dans les plus brefs délais</br>
+            Vous avez déjà fait une demande d'autorisation pour ce jour.</br>Jeter un coup d'oeil à votre profil pour voir si vous avez une reponse.</br></br>Dans le cas contraire, merci de patienter</br> vous aurez une réponse dans les plus brefs délais.</br>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="erreur" class="btn btn-secondary" data-dismiss="modal">J'ai compris</button>

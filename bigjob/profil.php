@@ -25,29 +25,20 @@ include('functions.php');
 
 if(isset($_SESSION['login'])){
     $infoUser= infoUser($_SESSION['login']);
-    ?>
-
-    <!-- <section class="formulaire">
-        <form method="POST" id="flex">
-            <input type="text" minlength="3" required name="login" placeholder="<?php echo $infoUser->login; ?>">
-            <input type="password" minlength="3" required name="password" placeholder="password">
-            <input type="password" minlength="3" required name="confPassword" placeholder="confirmation Password">
-            <input type="submit" id="valider" name="modifProfil" placeholder="Modifier profil">
-        </form><br>
-        
+    ?>  
         <?php  if(isset($_POST['modifProfil'])){
             updateProfil($_POST['login'],$_POST['password'],$_POST['confPassword']);
         } ?>
-    </section> -->
+    </section>
 
 
     <br><br><br>
     <!-- TABLEAU UTILISATEURS -->
     <h2>Vos demandes d'autorisations</h2>
-    <table class="table table-hover table-bordered table-dark">
+    <table class="table table-hover table-bordered table-dark" style="border-radius:2em; border:2px white solid;">
     <thead>
     <tr>
-    <th scope="col">#</th>
+    <th scope="col" class="Info link bg-warning" style="border:0.5px white solid; color:black;">Demande</th>
     <th scope="col">Date de réservation</th>
     <th scope="col">Demande fait le</th>
     <th scope="col">Statut</th>
@@ -66,34 +57,42 @@ if(isset($_SESSION['login'])){
     $i=1;
 
     while($res = $req -> fetch(PDO::FETCH_OBJ)){
+        $date = $res ->date_reservation;
+        $newDate = $date[8].$date[9]."/".$date[5].$date[6]."/".$date[0].$date[1].$date[2].$date[3];
+        $res ->date_reservation = $newDate;
+
+        $date1 = $res ->date_demande;
+        $newDate1 = $date1[8].$date1[9]."/".$date1[5].$date1[6]."/".$date1[0].$date1[1].$date1[2].$date1[3];
+        $res ->date_demande = $newDate1;
 
         ?>
             <tr><th scope="row"><?php echo $i++ ?></th> 
         <?php
         foreach($res as $info){
-            ?><td> <?php
+            ?><td class="text-warning"> <?php
             echo $info;
             ?> </td>
             <?php
         }
         ?>
         <td>
-            <div id="reponseAttente"> En Attente</div>
+            <div> En Attente</div>
         </td> 
             </tr> 
         <?php
     } ?>
 
-
+</tbody>
+</table>
 
 
     <!-- // REPONSE DEMANDE -->
-    <table class="table table-hover table-bordered table-dark">
+    <table class="table table-hover table-bordered table-dark" style="border-radius:2em; border:2px white solid;">
         <br><br><br>
         <h2>Les réponses</h2>
     <thead>
     <tr>
-    <th scope="col">#</th>
+    <th scope="col" class="Info link bg-warning" style="border:0.5px white solid; color:black;">Réponse</th>
     <th scope="col">Date de réservation</th>
     <th scope="col">Formateur</th>
     <th scope="col">Réponse</th>
@@ -109,12 +108,33 @@ if(isset($_SESSION['login'])){
     $req = $DB -> query($sql);
     $i=1;
     while($res = $req -> fetch(PDO::FETCH_OBJ)){
-        
+        $date = $res ->date_reservation;
+        $newDate = $date[8].$date[9]."/".$date[5].$date[6]."/".$date[0].$date[1].$date[2].$date[3];
+        $res ->date_reservation = $newDate;
         ?>
             <tr><th scope="row"><?php echo $i++ ?></th> 
         <?php
+
+        $res ->date_reservation = $date;
+        $dateResa = $res ->date_reservation;
+
+        $sqlVerif = ("SELECT * FROM reservation WHERE login='".$_SESSION['login']."' AND date_reservation='".$dateResa."'");
+        $reqVerif = $DB -> query($sqlVerif);
+        $resVerif = $reqVerif -> fetch(PDO::FETCH_OBJ);
+
+        $reponse = $resVerif ->reponse;
+
         foreach($res as $info){
-            ?><td> <?php
+            ?><td <?php 
+            if(isset($reponse)){ 
+                if($reponse == "yes"){
+                    echo "id='reponseYes'";
+                } 
+                if($reponse == "no"){
+                    echo "id='reponseNo'";
+                }
+            }?> style="font-size:1.1vw"> 
+            <?php
             echo $info;
             ?> </td>
             <?php
@@ -122,14 +142,7 @@ if(isset($_SESSION['login'])){
         ?>
         <td>
             <?php 
-            $dateResa = $res ->date_reservation;
-            
-            $sqlVerif = ("SELECT * FROM reservation WHERE login='".$_SESSION['login']."' AND date_reservation='".$dateResa."'");
-            $reqVerif = $DB -> query($sqlVerif);
-            $resVerif = $reqVerif -> fetch(PDO::FETCH_OBJ);
 
-            $reponse = $resVerif ->reponse;
-            
             if($reponse == "yes"){
                ?> <div id="reponseYes"> Accepter</div> <?php
             }
@@ -144,7 +157,21 @@ if(isset($_SESSION['login'])){
             </tr> 
         <?php
     }
-    }
+    ?>
+    </tbody>
+    </table>
+
+    <form method="POST">
+        <input type="submit" name="effacer" id="reponseNo" class="bg-dark text-light" style="border-radius: 0.3em; font-size:1.2vw; padding:0.4%;" value="Effacer historique refus">
+    </form>
+
+    <?php
+        if(isset($_POST['effacer'])){
+            $sqlDelete = ("DELETE FROM `reservation` WHERE login='".$_SESSION['login']."' && reponse='no'");
+            $reqDelete = $DB -> query($sqlDelete);
+            // header('location:profil.php');
+        }
+}
 
 else{
     echo header("location:connexion.php");

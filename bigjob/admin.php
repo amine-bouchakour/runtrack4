@@ -21,16 +21,20 @@
 
 <?php
 include("header.php");
-include("functions.php");
-?>
 
-<br><br><br>
+if($_SESSION['id_droits'] == "2" || $_SESSION['id_droits'] == "3"){
+
+include("functions.php");
+
+
+?>
+<br><br>
 <!-- TABLEAU DEMANDE D'ACCES -->
-<h2>Les demandes de réservations</h2>
-<table class="table table-hover table-bordered table-dark">
+<table class="table table-hover table-bordered table-dark" style="border-radius:2em; border:2px white solid;">
+    <h2>Les demandes de réservations</h2>
 <thead>
-<tr>
-  <th scope="col">#</th>
+<tr class="text-light">
+  <th scope="col" class="Info link bg-warning" style="border:0.5px white solid; color:black;">Demande</th>
   <th scope="col">Login</th>
   <th scope="col">Date de réservation</th>
   <th scope="col">Demande fait le</th>
@@ -46,11 +50,19 @@ $sql = ('SELECT login,date_reservation,date_demande FROM `demande_autorisation` 
 $req = $DB -> query($sql);
 $i=1;
 while($res = $req -> fetch(PDO::FETCH_OBJ)){
+    $date = $res ->date_reservation;
+    $newDate = $date[8].$date[9]."/".$date[5].$date[6]."/".$date[0].$date[1].$date[2].$date[3];
+    $res ->date_reservation = $newDate;
+
+    $date1 = $res ->date_demande;
+    $newDate1 = $date1[8].$date1[9]."/".$date1[5].$date1[6]."/".$date1[0].$date1[1].$date1[2].$date1[3];
+    $res ->date_demande = $newDate1;
+
     ?>
         <tr><th scope="row"><?php echo $i++ ?></th> 
     <?php
     foreach($res as $info){
-        ?><td> <?php
+        ?><td class="text-warning"> <?php
         echo $info;
         ?> </td>
         <?php
@@ -58,7 +70,7 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
     ?>
     <td>
         <form method="POST">
-            <input type="hidden" name="droitDate" value="<?php echo $res->date_reservation ?>">
+            <input type="hidden" name="droitDate" value="<?php $res ->date_reservation = $date; echo $res->date_reservation ?>">
             <input type="hidden" name="droitLogin" value="<?php echo $res->login ?>">
             <input type="submit" name="accepter" id="reponseYes" value="Accepter">
             <input type="submit" name="refuser" id="reponseNo" value="Refuser">
@@ -69,18 +81,21 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
 }
 
 if(isset($_POST['accepter'])){
-    $date = $_POST['droitDate'];
+    
+    $res ->date_demande = $date1;
+
+    $date2 = $_POST['droitDate'];
     $login = $_POST['droitLogin'];
 
-    $sqlVerif = ("SELECT * FROM reservation WHERE login='".$login."' AND date_reservation='".$date."'");
+    $sqlVerif = ("SELECT * FROM reservation WHERE login='".$login."' AND date_reservation='".$date2."'");
     $req = $DB -> query($sqlVerif);
     $res = $req -> fetch(PDO::FETCH_OBJ);
 
     if(!$res){
-        $sql = ("INSERT INTO `reservation` (`login`,`date_reservation`,`admin_user`,`reponse`) VALUE ('".$login."','".$date."','".$_SESSION['login']."','yes')");
+        $sql = ("INSERT INTO `reservation` (`login`,`date_reservation`,`admin_user`,`reponse`) VALUE ('".$login."','".$date2."','".$_SESSION['login']."','yes')");
         $req = $DB -> query($sql);
 
-        $sqlDelete = ("DELETE FROM `demande_autorisation` WHERE login='".$login."' AND date_reservation='".$date."'");
+        $sqlDelete = ("DELETE FROM `demande_autorisation` WHERE login='".$login."' AND date_reservation='".$date2."'");
         $reqDelete = $DB -> query($sqlDelete);
         header('location:admin.php');
     }
@@ -107,12 +122,12 @@ if(isset($_POST['refuser'])){
 
 
 <!-- TABLEAU ADMNISTRATEUR -->
-<table class="table table-hover table-bordered bg-info">
+<table class="table table-hover table-bordered bg-info" style="border-radius:2em; border:2px white solid;">
     <br><br><br>
     <h2>Les droits d'accès (Admnistration du site)</h2>
 <thead>
-<tr>
-  <th scope="col">#</th>
+<tr class="text-light">
+  <th scope="col" class="Info link bg-warning" style="border:0.5px white solid; color:black;">Accès</th>
   <th scope="col">Login</th>
   <th scope="col">Droits</th>
   <th scope="col">Date ajout</th>
@@ -130,17 +145,20 @@ if(isset($_POST['refuser'])){
 
 <?php 
 // REQUETE TOUTES LES PERSONNES ETANT DANS L'ADMNISTRATION DU SITE
-$sql = ('SELECT login,droits,date_ajout,ajouter_par FROM `admin`');
+$sql = ('SELECT login,droits,date_ajout,ajouter_par FROM `admin` ORDER BY droits DESC');
 $req = $DB -> query($sql);
 $i=1;
 while($res = $req -> fetch(PDO::FETCH_OBJ)){
+    $date = $res ->date_ajout;
+    $newDate = $date[8].$date[9]."/".$date[5].$date[6]."/".$date[0].$date[1].$date[2].$date[3];
+    $res ->date_ajout = $newDate;
     ?>
         <tr><th scope="row">#<?php echo $i++; ?></th> 
     <?php
     foreach($res as $info){
         if($res->droits == "2"){$res->droits = "Modérateur";}
         if($res->droits == "3"){$res->droits = "Administateur";}
-        ?><td> <?php
+        ?><td style="font-weight: bold"> <?php
         echo $info;
         ?> </td> <?php
     }
@@ -151,7 +169,7 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
             <form method="POST">
                 <input type="hidden" name="loginDroits" value="<?php echo $res->login ?>">
                 <input type="submit" name="retrograder" id="reponseNo" value="Rétrograder">
-                <input type="submit" name="promotion" id="reponseYes" value="Promotion">
+                <input type="submit" name="promotion" id="reponseYes" value="Promouvoir">
             </form>
         </td> 
         <?php
@@ -228,14 +246,14 @@ if(isset($_POST['retrograder'])){
     <th scope="row" >Ajouter un gestionnaire</th>
     <form method="POST">
         <td><input type="text" name="login" style="border-radius: 0.5em; text-align:center;" placeholder="Login"></td>
-        <td><select name="droits">
+        <td><select name="droits" style="margin-top:2.1%; width:95%;">
             <OPTION>Choisir Droits
             <OPTION>Modérateur
             <OPTION>Administateur
         </select></td>
-        <td>XXXXXXXXXXXXXXXXX</td>
-        <td>XXXXXXXXXXXXXXXXX</td>
-        <td><input type="submit" name="ajouter" id="reponseYes" value="Ajouter"></td>
+        <td>______________</td>
+        <td>______________</td>
+        <td><input type="submit" name="ajouter" id="reponseYes" value="Ajouter" style="font-size:1.1vw; border:1px black solid;" class="bg-dark text-light"></td>
      
     </form>
 </tr>
@@ -300,10 +318,10 @@ if(isset($_POST['ajouter'])){
 <br><br><br>
 <!-- TABLEAU UTILISATEURS SITE -->
 <h2>Les Utilisateurs du site</h2>
-<table class="table table-hover table-bordered table-dark">
+<table class="table table-hover table-bordered table-dark" style="border-radius:2em; border:2px white solid;">
 <thead>
 <tr>
-  <th scope="col">#</th>
+  <th scope="col" class="Info link bg-warning" style="border:0.5px white solid; color:black;">Utilisateurs</th>
   <th scope="col">Login</th>
   <th scope="col">Email</th>
   <th scope="col">Id_droits</th>
@@ -323,12 +341,12 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
     <?php
     foreach($res as $info){
         if($res->id_droits == 1){ $res->id_droits = "Utilisateurs";}
-        ?><td> <?php
+        ?><td class="text-info"> <?php
         echo $info;
         ?> </td> <?php
     }
     ?>
-      <?php if($_SESSION['id_droits'] == "3" ){
+      <?php if($_SESSION['id_droits'] == "3" || $_SESSION['id_droits'] == "2"){
     ?>
         <td>
             <form method="POST">
@@ -354,6 +372,11 @@ if(isset($_POST['supprimer'])){
 
     $sqlDelete = ("DELETE FROM `users` WHERE login='".$login."'");
     $reqDelete = $DB -> query($sqlDelete);
+}
+
+}
+else{
+    header('location:connexion.php');
 }
 ?>
 

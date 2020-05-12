@@ -56,17 +56,16 @@ if(isset($_SESSION['login'])){
         </button>
       </div>
       <div class="modal-body">
-        Le fonctionnement : </br>
         Après avoir fait votre demande, nous vous demandons d'être patient. <br>
-        Nous répondrons au plus vite à votre demande, en fonction du nombre de places disponibles. <br>
-        La réponse sera visible sur votre profil, merci d'y jeter un coup d'oeil régulièrement. <br><br>
-        Merci de votre compréhension, à très bientôt !
+        Nous vous répondrons au plus vite. </br>La reponse sera en fonction du nombre de places disponibles. <br>
+        Elle sera visible sur votre profil, n'hésitez à régulièrement aller vérifier. <br><br>
+        Merci de votre compréhension.</br> Bon déconfinement à vous et à très bientôt !
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
         <form method="POST">
-          <button type="button" class="btn btn-primary" onclick="window.location.href = 'calendrier.php';">Choisir votre date</button>
+          <button type="button" class="btn btn-primary" onclick="window.location.href = 'calendrier.php';">Continuer</button>
         </form>
         <?php if(isset($_POST['goCalender'])){header("location:calendrier.php");} ?>
       </div>

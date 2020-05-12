@@ -5,27 +5,40 @@ html{
     padding:0;
 }
 
-body{
+
+/* ORDINATEUR TAILLE */
+@media screen and (min-width:960px){
+
+    body{
     padding: 1%;
     text-align: center; 
     margin:0% 2%;
-}
+    }
 
-table{
-    /* width: 60%; */
-}
+    table{
+    margin:1.5% auto;
+    width: 60%;
+    font-size: 1.1vw;
+    }
 
-#reponseYes{
-color: rgb(77, 210, 77);
-font-size: large;
-border-radius : 0.3em;
-font-weight: bold;
-}
+    td{
+        padding:2%;
+    }
+
+    #reponseYes{
+    color: rgb(77, 210, 77);
+    font-size: large;
+    border-radius : 0.3em;
+    font-weight: bold;
+    }
 
 
-#reponseNo{
-color:rgb(255, 74, 74);
-font-size: large;
-border-radius : 0.3em;
-font-weight: bold;
+    #reponseNo{
+    color:rgb(255, 74, 74);
+    font-size: large;
+    border-radius : 0.3em;
+    font-weight: bold;
+    }
+
+
 }

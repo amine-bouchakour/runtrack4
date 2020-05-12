@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  lun. 11 mai 2020 à 22:38
+-- Généré le :  mar. 12 mai 2020 à 07:23
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.4.2
 
@@ -56,7 +56,7 @@ CREATE TABLE `demande_autorisation` (
 --
 
 INSERT INTO `demande_autorisation` (`id`, `login`, `date_reservation`, `date_demande`) VALUES
-(15, 'admin', '2020-07-28', '2020-05-12');
+(22, 'amine', '2020-12-02', '2020-05-12');
 
 -- --------------------------------------------------------
 
@@ -78,8 +78,6 @@ CREATE TABLE `reservation` (
 
 INSERT INTO `reservation` (`id`, `login`, `date_reservation`, `admin_user`, `reponse`) VALUES
 (37, 'admin', '2020-10-01', 'admin', 'yes'),
-(38, 'admin', '2020-07-15', 'admin', 'no'),
-(39, 'admin', '2020-07-10', 'admin', 'no'),
 (40, 'amine', '2020-05-15', 'admin', 'yes'),
 (41, 'amine', '2020-06-02', 'admin', 'no'),
 (42, 'amine', '2020-06-18', 'admin', 'yes'),
@@ -91,9 +89,9 @@ INSERT INTO `reservation` (`id`, `login`, `date_reservation`, `admin_user`, `rep
 (48, 'admin', '2020-10-03', 'admin', 'yes'),
 (49, 'admin', '2020-07-09', 'admin', 'yes'),
 (50, 'admin', '2020-06-05', 'admin', 'yes'),
-(51, 'admin', '2020-06-11', 'admin', 'no'),
-(52, 'admin', '2020-06-25', 'admin', 'no'),
-(53, 'admin', '2020-06-26', 'admin', 'no');
+(54, 'amine', '2020-06-20', 'admin', 'yes'),
+(55, 'amine', '2020-07-17', 'admin', 'no'),
+(58, 'admin', '2020-07-02', 'admin', 'yes');
 
 -- --------------------------------------------------------
 
@@ -154,19 +152,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT pour la table `demande_autorisation`
 --
 ALTER TABLE `demande_autorisation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT pour la table `users`
