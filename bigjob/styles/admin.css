@@ -32,12 +32,48 @@ html{
     font-weight: bold;
     }
 
+    #table{
+    border-radius:2em; 
+    border:2px white solid;
+    }
 
     #reponseNo{
     color:rgb(255, 74, 74);
     font-size: large;
     border-radius : 0.3em;
     font-weight: bold;
+    }
+
+    #bold{
+        font-weight: bold
+    }
+
+    .colRed{
+        color:red;
+    }
+
+    #intitule{
+        border:0.5px white solid; 
+        color:black;
+    }
+
+    .ajouterGest{
+        border:2px white solid;
+        padding: 1%;
+    }
+    .realign{
+        border-radius: 0.5em; 
+        margin-top:1%;
+        height:30px; 
+        text-align:center;
+    }
+
+    #droits{
+        margin-top:2.1%; 
+        width:95%;
+    }
+    #dateAjout{
+        padding-top:14px;
     }
 
 

@@ -34,11 +34,11 @@ if(isset($_SESSION['login'])){
 
     <br><br><br>
     <!-- TABLEAU UTILISATEURS -->
+    <table class="table table-hover table-bordered table-dark" id="table">
     <h2>Vos demandes d'autorisations</h2>
-    <table class="table table-hover table-bordered table-dark" style="border-radius:2em; border:2px white solid;">
     <thead>
     <tr>
-    <th scope="col" class="Info link bg-warning" style="border:0.5px white solid; color:black;">Demande</th>
+    <th scope="col" class="Info link bg-warning" id="intitule">Demandes</th>
     <th scope="col">Date de réservation</th>
     <th scope="col">Demande fait le</th>
     <th scope="col">Statut</th>
@@ -84,15 +84,15 @@ if(isset($_SESSION['login'])){
 
 </tbody>
 </table>
+        <br><br>
 
 
     <!-- // REPONSE DEMANDE -->
-    <table class="table table-hover table-bordered table-dark" style="border-radius:2em; border:2px white solid;">
-        <br><br><br>
+    <table class="table table-hover table-bordered table-dark" id="table">
         <h2>Les réponses</h2>
     <thead>
     <tr>
-    <th scope="col" class="Info link bg-warning" style="border:0.5px white solid; color:black;">Réponse</th>
+    <th scope="col" class="Info link bg-warning" id="intitule">Réponses</th>
     <th scope="col">Date de réservation</th>
     <th scope="col">Formateur</th>
     <th scope="col">Réponse</th>
@@ -133,7 +133,7 @@ if(isset($_SESSION['login'])){
                 if($reponse == "no"){
                     echo "id='reponseNo'";
                 }
-            }?> style="font-size:1.1vw"> 
+            }?>> 
             <?php
             echo $info;
             ?> </td>
@@ -162,7 +162,7 @@ if(isset($_SESSION['login'])){
     </table>
 
     <form method="POST">
-        <input type="submit" name="effacer" id="reponseNo" class="bg-dark text-light" style="border-radius: 0.3em; font-size:1.2vw; padding:0.4%;" value="Effacer historique refus">
+        <input type="submit" name="effacer" class="bg-dark text-light" id="effaceHisto" value="Effacer historique refus">
     </form>
 
     <?php

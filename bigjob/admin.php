@@ -30,11 +30,11 @@ include("functions.php");
 ?>
 <br><br>
 <!-- TABLEAU DEMANDE D'ACCES -->
-<table class="table table-hover table-bordered table-dark" style="border-radius:2em; border:2px white solid;">
+<table class="table table-hover table-bordered table-dark" id="table">
     <h2>Les demandes de réservations</h2>
 <thead>
 <tr class="text-light">
-  <th scope="col" class="Info link bg-warning" style="border:0.5px white solid; color:black;">Demande</th>
+  <th scope="col" class="Info link bg-warning" id="intitule">Demande</th>
   <th scope="col">Login</th>
   <th scope="col">Date de réservation</th>
   <th scope="col">Demande fait le</th>
@@ -122,12 +122,12 @@ if(isset($_POST['refuser'])){
 
 
 <!-- TABLEAU ADMNISTRATEUR -->
-<table class="table table-hover table-bordered bg-info" style="border-radius:2em; border:2px white solid;">
+<table class="table table-hover table-bordered bg-info" id="table">
     <br><br><br>
     <h2>Les droits d'accès (Admnistration du site)</h2>
 <thead>
 <tr class="text-light">
-  <th scope="col" class="Info link bg-warning" style="border:0.5px white solid; color:black;">Accès</th>
+  <th scope="col" class="Info link bg-warning" id="intitule">Accès</th>
   <th scope="col">Login</th>
   <th scope="col">Droits</th>
   <th scope="col">Date ajout</th>
@@ -158,7 +158,7 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
     foreach($res as $info){
         if($res->droits == "2"){$res->droits = "Modérateur";}
         if($res->droits == "3"){$res->droits = "Administateur";}
-        ?><td style="font-weight: bold"> <?php
+        ?><td id="bold"> <?php
         echo $info;
         ?> </td> <?php
     }
@@ -245,15 +245,15 @@ if(isset($_POST['retrograder'])){
 <tr>
     <th scope="row" >Ajouter un gestionnaire</th>
     <form method="POST">
-        <td><input type="text" name="login" style="border-radius: 0.5em; text-align:center;" placeholder="Login"></td>
-        <td><select name="droits" style="margin-top:2.1%; width:95%;">
+        <td><input type="text" name="login" class="realign" placeholder="Login"></td>
+        <td><select name="droits" id="droits">
             <OPTION>Choisir Droits
             <OPTION>Modérateur
             <OPTION>Administateur
         </select></td>
-        <td>______________</td>
-        <td>______________</td>
-        <td><input type="submit" name="ajouter" id="reponseYes" value="Ajouter" style="font-size:1.1vw; border:1px black solid;" class="bg-dark text-light"></td>
+        <td class="text-light" id="dateAjout"><?php echo date('d/m/Y'); ?></td>
+        <td class="text-light"><?php echo $_SESSION['login'] ?></td>
+        <td><input type="submit" name="ajouter" id="reponseYes" class="ajouterGest" value="Ajouter" class="bg-dark text-light"></td>
      
     </form>
 </tr>
@@ -295,16 +295,16 @@ if(isset($_POST['ajouter'])){
                 header("location:admin.php");
             }
             else{
-                echo "<h5 style='color:red;'>Merci de choisir un droit d'accès pour cette utilisateur</h5>";
+                echo "<h5 class='colRed'>Merci de choisir un droit d'accès pour cette utilisateur</h5>";
             }
 
         }
         else{
-            echo "<h5 style='color:red;'>L'utilisateur n'existe pas dans la base de donnée</h5>";
+            echo "<h5 class='colRed'>L'utilisateur n'existe pas dans la base de donnée</h5>";
         }
     }
     else{
-        echo "<h5 style='color:red;'>L'utilisateur est déjà présent dans la gestion admninistrative du site</h5>";
+        echo "<h5 class='colRed'>L'utilisateur est déjà présent dans la gestion admninistrative du site</h5>";
     }
 
 
@@ -318,10 +318,10 @@ if(isset($_POST['ajouter'])){
 <br><br><br>
 <!-- TABLEAU UTILISATEURS SITE -->
 <h2>Les Utilisateurs du site</h2>
-<table class="table table-hover table-bordered table-dark" style="border-radius:2em; border:2px white solid;">
+<table class="table table-hover table-bordered table-dark" id="table">
 <thead>
 <tr>
-  <th scope="col" class="Info link bg-warning" style="border:0.5px white solid; color:black;">Utilisateurs</th>
+  <th scope="col" class="Info link bg-warning" id="intitule">Utilisateurs</th>
   <th scope="col">Login</th>
   <th scope="col">Email</th>
   <th scope="col">Id_droits</th>

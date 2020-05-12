@@ -8,14 +8,14 @@ padding:0;
 
 #reponseYes{
 color: rgb(77, 210, 77);
-font-size: large;
+font-size: 1.1vw;
 font-weight: bold;
 }
 
 
 #reponseNo{
 color:rgb(255, 74, 74);
-font-size: large;
+font-size: 1vw;
 font-weight: bold;
 }
 
@@ -37,6 +37,24 @@ font-size: large;
     margin:1.5% auto;
     width: 60%;
     font-size: 1.1vw;
+    }
+
+    #table{
+    border-radius:2em; 
+    border:2px white solid;
+    }
+
+    #effaceHisto{
+        border-radius: 0.3em; 
+        font-size:1.2vw; 
+        padding:0.4%;
+        color:rgb(255, 74, 74);
+        font-weight: bold;
+    }
+
+    #intitule{
+        border:0.5px white solid; 
+        color:black;
     }
 
     td{
