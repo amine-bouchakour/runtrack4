@@ -5,6 +5,7 @@
 
     <?php if(isset($_SESSION['login'])){ ?>
         <div id="flexR">
+            <div><a href="https://laplateforme.io/" target="_blank"><img src="assets/logoPlate2.png" id="logo" alt=""></a></div>
             <div><a href="index.php">Acceuil</a></div>
             <div><a href="reservation.php">Réservation</a></div>
             <?php if($_SESSION['id_droits'] == "2" || $_SESSION['id_droits'] == "3" ){
@@ -20,6 +21,7 @@
     else{
     ?>
     <div id="flexR">
+        <div><a href="https://laplateforme.io/" target="_blank"><img src="assets/logoPlate2.png" id="logo" alt=""></a></div>
         <div><a href="index.php">Index</a></div>
         <div><a href="connexion.php">Connexion</a></div>
         <div><a href="inscription.php">Inscription</a></div>

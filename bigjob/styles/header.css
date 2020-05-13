@@ -5,3 +5,9 @@ header{
     padding-top: 1.8%;
     margin:-3% 0% 3% -3%;
 }
+
+#logo{
+    width:550px; 
+    height:70px; 
+    margin:-23px 0px 0px -120px;
+}
