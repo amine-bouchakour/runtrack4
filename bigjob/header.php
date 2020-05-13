@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <link rel="stylesheet" href="styles/reservation.css">
+<link rel="stylesheet" href="styles/header.css">
 <header>
 
     <?php if(isset($_SESSION['login'])){ ?>

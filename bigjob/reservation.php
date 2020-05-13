@@ -28,38 +28,38 @@ if(isset($_SESSION['login'])){
 
 ?>
 
-<div id="titrePage" class="col-12 p-2 bg-warning" >Planning et Réservations</div>
-<br><br><br>
+<div id="titrePageOr" class="bg-warning" ><h2>Planning et Réservations</h2></div>
+<br><br>
 
 <!-- RESERVATION CRENEAU -->
 <div id="titrePage">
   <h2>Conditions d'acceuil</h2><br>
 
-  En cette période de déconfinement nous vous rappellons qu'il faut : </br>
+  <b>En cette période de déconfinement nous vous rappellons qu'il faut :</b> </br><br>
   - Respectez les distances appropriées d'un mètre minimum. </br>
   - Porter un masque et se laver régulièrement les mains. <br>
-  - Tousser ou éternuer dans le plis de votre coudes. </br>
-  - En cas de maladie, ou d'autres difficultés, merci de tenir au courant au plus vite le staff. </br>
-  - Les places seront limitées jusqu'à nouvelle ordre pour éviter la propagation du virus au mieux. <br><br>
+  - Tousser ou éternuer dans le plis de votre coudes. </br><br>
+  - Les places seront limitées jusqu'à nouvelle ordre pour éviter la propagation du virus. <br><br>
+  - En cas de maladie, ou d'autres difficultées (connexion etc...), </br> merci de nous tenir informé de votre situation. </br><br>
 </div>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Faire une demande de réservation</button>
+<button type="button" class="btn btn-primary" style="font-size: 1.1vw" data-toggle="modal" data-target="#exampleModalCenter">Faire une demande de réservation</button>
 
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+    <div class="modal-content" id="padding">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Demande d'autorisation d'accès à la Plateforme_</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="modalResa">
         Après avoir fait votre demande, nous vous demandons d'être patient. <br>
         Nous vous répondrons au plus vite. </br>La reponse sera en fonction du nombre de places disponibles. <br>
-        Elle sera visible sur votre profil, n'hésitez à régulièrement aller vérifier. <br><br>
-        Merci de votre compréhension.</br> Bon déconfinement à vous et à très bientôt !
+        Elle sera visible sur votre profil, pensé à aller vérifier de temps à autre. <br><br>
+        Merci de votre compréhension.</br> Bon retour à la norme et à très bientôt !
 
       </div>
       <div class="modal-footer">
@@ -75,14 +75,6 @@ if(isset($_SESSION['login'])){
 </div>
 
 
-<div class="">
-
-
-    <table id="table" class="table-hover table-dark" id="border-radius">
-
-
-    </table>
-</div>
 
 
 

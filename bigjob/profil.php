@@ -25,18 +25,16 @@ include('functions.php');
 
 if(isset($_SESSION['login'])){
     ?>  
-<br><br>
-
     <h2>Vos demandes d'autorisations</h2>
     <section>
     <!-- TABLEAU UTILISATEURS -->
     <table class="table table-hover table-bordered table-dark" id="table">
     <thead>
     <tr>
-    <th scope="col" class="Info link bg-warning" id="intitule">Demandes</th>
-    <th scope="col">Date de réservation</th>
-    <th scope="col">Demande fait le</th>
-    <th scope="col">Statut</th>
+    <th scope="col" style="padding:1.2%;" class="Info link bg-warning" id="intitule">Demandes</th>
+    <th scope="col" style="padding:1.2%;">Date de réservation</th>
+    <th scope="col" style="padding:1.2%;">Demande fait le</th>
+    <th scope="col" style="padding:1.2%;">Statut</th>
     </tr>
     </thead>
     <tbody>
@@ -61,17 +59,17 @@ if(isset($_SESSION['login'])){
         $res ->date_demande = $newDate1;
 
         ?>
-            <tr><th scope="row"><?php echo $i++ ?></th> 
+            <tr><th scope="row" style="padding:1.2%;"><?php echo $i++ ?></th> 
         <?php
         foreach($res as $info){
-            ?><td class="text-warning"> <?php
+            ?><td class="text-warning" style="padding:1.2%;"> <?php
             echo $info;
             ?> </td>
             <?php
         }
         ?>
         <td>
-            <div> En Attente</div>
+            <div style="padding:1.2%;"> En Attente</div>
         </td> 
             </tr> 
         <?php
@@ -88,10 +86,10 @@ if(isset($_SESSION['login'])){
     <table class="table table-hover table-bordered table-dark" id="table">
     <thead>
     <tr>
-    <th scope="col" class="Info link bg-warning" id="intitule">Réponses</th>
-    <th scope="col">Date de réservation</th>
-    <th scope="col">Formateur</th>
-    <th scope="col">Status</th>
+    <th scope="col" style="padding:1.2%;" class="Info link bg-warning" id="intitule">Réponses</th>
+    <th scope="col" style="padding:1.2%;">Date de réservation</th>
+    <th scope="col" style="padding:1.2%;">Formateur</th>
+    <th scope="col" style="padding:1.2%;">Status</th>
     </tr>
     </thead>
     <tbody>
@@ -108,7 +106,7 @@ if(isset($_SESSION['login'])){
         $newDate = $date[8].$date[9]."/".$date[5].$date[6]."/".$date[0].$date[1].$date[2].$date[3];
         $res ->date_reservation = $newDate;
         ?>
-            <tr><th scope="row"><?php echo $i++ ?></th> 
+            <tr><th scope="row" style="padding:1.2%;"><?php echo $i++ ?></th> 
         <?php
 
         $res ->date_reservation = $date;
@@ -130,7 +128,7 @@ if(isset($_SESSION['login'])){
                 if($reponse == "no"){
                     echo "id='reponseNo'";
                 }
-            }?>> 
+            }?> style="padding:1.2%;"> 
             <?php
             echo $info;
             ?> 
@@ -142,11 +140,11 @@ if(isset($_SESSION['login'])){
             <?php 
 
             if($reponse == "yes"){
-               ?> <div id="reponseYes"> Accepter</div> <?php
+               ?> <div id="reponseYes" style="padding:1.2%;"> Accepter</div> <?php
             }
             
             if($reponse =="no"){
-                ?> <div id="reponseNo"> Refuser</div> <?php
+                ?> <div id="reponseNo" style="padding:1.2%;"> Refuser</div> <?php
             }
             
             ?>
@@ -160,8 +158,8 @@ if(isset($_SESSION['login'])){
     </table>
 
     <form method="POST">
-        <input type="submit" name="effacer" class="bg-dark text-light" id="effaceHisto" value="Effacer historique refus"><br>
-        <input type="submit" name="effacerDate" class="bg-dark text-light" id="effaceHisto" value="Effacer date dépassé">
+        <input type="submit" style="padding:0.6%;" name="effacer" class="bg-dark text-light" id="effaceHisto" value="Effacer historique refus"><br><br>
+        <input type="submit" style="padding:0.6%;" name="effacerDate" class="bg-dark text-light" id="effaceHisto" value="Effacer date dépassé">
     </form>
     </section>
 

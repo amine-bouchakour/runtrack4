@@ -25,13 +25,10 @@ html{
         margin: 1% auto 5%;
     }
 
-    td{
-        padding:2%;
-    }
 
     #reponseYes{
     color: rgb(77, 210, 77);
-    font-size: large;
+    font-size: 22px;
     border-radius : 0.3em;
     font-weight: bold;
     }
@@ -43,7 +40,7 @@ html{
 
     #reponseNo{
     color:rgb(255, 74, 74);
-    font-size: large;
+    font-size: 22px;
     border-radius : 0.3em;
     font-weight: bold;
     }
@@ -61,10 +58,6 @@ html{
         color:black;
     }
 
-    .ajouterGest{
-        border:2px white solid;
-        padding: 1%;
-    }
     .realign{
         border-radius: 0.5em; 
         margin-top:1%;

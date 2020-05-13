@@ -28,18 +28,17 @@ include("functions.php");
 
 
 ?>
-<br><br>
 <!-- TABLEAU DEMANDE D'ACCES -->
     <h2>Les demandes de réservations</h2>
 <section>
 <table class="table table-hover table-bordered table-dark" id="table">
 <thead>
 <tr class="text-light">
-  <th scope="col" class="Info link bg-warning" id="intitule">Demande</th>
-  <th scope="col">Login</th>
-  <th scope="col">Date de réservation</th>
-  <th scope="col">Demande fait le</th>
-  <th scope="col">Autorisez / Refuser</th>
+  <th scope="col" style="padding:1.2%;" class="Info link bg-warning" id="intitule">Demande</th>
+  <th scope="col" style="padding:1.2%;">Login</th>
+  <th scope="col" style="padding:1.2%;">Date de réservation</th>
+  <th scope="col" style="padding:1.2%;">Demande fait le</th>
+  <th scope="col" style="padding:1.2%;">Autorisez / Refuser</th>
 </tr>
 </thead>
 <tbody>
@@ -60,17 +59,17 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
     $res ->date_demande = $newDate1;
 
     ?>
-        <tr><th scope="row"><?php echo $i++ ?></th> 
+        <tr><th style="padding:1.2%;" scope="row"><?php echo $i++ ?></th> 
     <?php
     foreach($res as $info){
-        ?><td class="text-warning"> <?php
+        ?><td class="text-warning" style="padding:1.4%;"> <?php
         echo $info;
         ?> </td>
         <?php
     }
     ?>
     <td>
-        <form method="POST">
+        <form method="POST" style="padding:1.2%;">
             <input type="hidden" name="droitDate" value="<?php $res ->date_reservation = $date; echo $res->date_reservation ?>">
             <input type="hidden" name="droitLogin" value="<?php echo $res->login ?>">
             <input type="submit" name="accepter" id="reponseYes" value="Accepter">
@@ -127,11 +126,11 @@ if(isset($_POST['refuser'])){
 <table class="table table-hover table-bordered bg-info" id="table">
 <thead>
 <tr class="text-light">
-  <th scope="col" class="Info link bg-warning" id="intitule">Accès</th>
-  <th scope="col">Login</th>
-  <th scope="col">Droits</th>
-  <th scope="col">Date ajout</th>
-  <th scope="col">Ajouter par</th>
+  <th scope="col" style="padding:1.2%;" class="Info link bg-warning" id="intitule">Accès</th>
+  <th scope="col" style="padding:1.2%;">Login</th>
+  <th scope="col" style="padding:1.2%;">Droits</th>
+  <th scope="col" style="padding:1.2%;">Date ajout</th>
+  <th scope="col" style="padding:1.2% 0% 1.2%;">Ajouter par</th>
 
   <?php if($_SESSION['id_droits'] == "3" ){
     ?>
@@ -153,12 +152,12 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
     $newDate = $date[8].$date[9]."/".$date[5].$date[6]."/".$date[0].$date[1].$date[2].$date[3];
     $res ->date_ajout = $newDate;
     ?>
-        <tr><th scope="row"><?php echo $i++; ?></th> 
+        <tr><th scope="row" style="padding:1.2%;"><?php echo $i++; ?></th> 
     <?php
     foreach($res as $info){
         if($res->droits == "2"){$res->droits = "Modérateur";}
         if($res->droits == "3"){$res->droits = "Administateur";}
-        ?><td id="bold"> <?php
+        ?><td id="bold" style="padding:1.4%;"> <?php
         echo $info;
         ?> </td> <?php
     }
@@ -168,8 +167,8 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
         <td>
             <form method="POST">
                 <input type="hidden" name="loginDroits" value="<?php echo $res->login ?>">
-                <input type="submit" name="retrograder" id="reponseNo" value="Rétrograder">
-                <input type="submit" name="promotion" id="reponseYes" value="Promouvoir">
+                <input type="submit" style="padding:1.2%;" name="retrograder" id="reponseNo" value="Rétrograder">
+                <input type="submit" style="padding:1.2%;" name="promotion" id="reponseYes" value="Promouvoir">
             </form>
         </td> 
         <?php
@@ -243,7 +242,7 @@ if(isset($_POST['retrograder'])){
 <?php if($_SESSION['id_droits'] == "3" ){
             ?>
 <tr>
-    <th scope="row" >Ajouter un gestionnaire</th>
+    <th scope="row" style="padding:1.2%;">Ajouter un gestionnaire</th>
     <form method="POST">
         <td><input type="text" name="login" class="realign" placeholder="Login"></td>
         <td><select name="droits" id="droits">
@@ -251,9 +250,9 @@ if(isset($_POST['retrograder'])){
             <OPTION>Modérateur
             <OPTION>Administateur
         </select></td>
-        <td class="text-light" id="dateAjout"><?php echo date('d/m/Y'); ?></td>
-        <td class="text-light"><?php echo $_SESSION['login'] ?></td>
-        <td><input type="submit" name="ajouter" id="reponseYes" class="ajouterGest" value="Ajouter" class="bg-dark text-light"></td>
+        <td class="text-light" style="padding:1.2%;" id="dateAjout"><?php echo date('d/m/Y'); ?></td>
+        <td class="text-light" style="padding:1.2%;"><?php echo $_SESSION['login'] ?></td>
+        <td><input type="submit" style="padding:1.2%;" name="ajouter" id="reponseYes" class="ajouterGest" value="Ajouter" class="bg-dark text-light"></td>
      
     </form>
 </tr>
@@ -326,10 +325,10 @@ if(isset($_POST['ajouter'])){
 <thead>
 <tr>
   <th scope="col" class="Info link bg-warning" id="intitule">Utilisateurs</th>
-  <th scope="col">Login</th>
-  <th scope="col">Email</th>
-  <th scope="col">Droits</th>
-  <th scope="col">Supprimer Compte</th>
+  <th scope="col" style="padding:1.1%;">Login</th>
+  <th scope="col" style="padding:1.1%;">Email</th>
+  <th scope="col" style="padding:1.1%;">Droits</th>
+  <th scope="col" style="padding:1.1%;">Supprimer Compte</th>
 </tr>
 </thead>
 <tbody>
@@ -341,11 +340,11 @@ $req = $DB -> query($sql);
 $i=1;
 while($res = $req -> fetch(PDO::FETCH_OBJ)){
     ?>
-        <tr><th scope="row"><?php echo $i++; ?></th> 
+        <tr><th scope="row" style="padding:1.2%;"><?php echo $i++; ?></th> 
     <?php
     foreach($res as $info){
         if($res->id_droits == 1){ $res->id_droits = "Utilisateurs";}
-        ?><td class="text-info"> <?php
+        ?><td class="text-info" style="padding:1.2%;"> <?php
         echo $info;
         ?> </td> <?php
     }
@@ -354,8 +353,8 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
     ?>
         <td>
             <form method="POST">
-                <input type="hidden" name="login" value="<?php echo $res->login ?>">
-                <input type="submit" name="supprimer" id="reponseNo" value="Supprimer">
+                <input type="hidden" style="padding:1.1%;" name="login" value="<?php echo $res->login ?>">
+                <input type="submit" style="padding:1.1%;" name="supprimer" id="reponseNo" value="Supprimer">
             </form>
         </td> 
         <?php

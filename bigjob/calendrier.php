@@ -35,14 +35,14 @@ if(isset($_SESSION['login'])){
 <!-- Modal confirmation information -->
 <div class="modal fade" id="choixHeure" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content" id="padding">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="modalResa">
           <div id="date" name="date"></div>
         </div>
         <div class="modal-footer">
@@ -85,15 +85,15 @@ if(isset($_SESSION['login'])){
         <!-- Modal confirmation information -->
         <div class="modal fade show" style="display:block" id="erreurModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" id="padding">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
+                <h5 class="modal-title text-danger" id="exampleModalLabel">Attention</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-            Vous avez déjà fait une demande d'autorisation pour ce jour.</br>Jeter un coup d'oeil à votre profil pour voir si vous avez une reponse.</br></br>Dans le cas contraire, merci de patienter</br> vous aurez une réponse dans les plus brefs délais.</br>
+            <div class="modal-body" id="modalResa">
+            Vous avez déjà fait une demande d'autorisation pour ce jour.</br></br>Jeter un coup d'oeil à votre profil pour voir si vous avez une reponse.</br></br>Dans le cas contraire, merci de patienter,</br> nous vous répondrons dans les plus brefs délais.</br>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="erreur" class="btn btn-secondary" data-dismiss="modal">J'ai compris</button>

@@ -29,6 +29,18 @@ padding:0;
         margin:2% auto;
     }
 
+    #button{
+    margin-top:10px;
+    color:rgb(253, 124, 124);
+    font-size: 0.7vw;
+    font-weight: bold;
+    border-radius: 0.3em;
+    }
+
+    #titreForm{
+        color:white; margin:1% 0 2%;
+    }
+
     #animCo {
         animation-duration: 3s;
         animation-name: animCo;
@@ -42,6 +54,23 @@ padding:0;
         20% {transform: translateY(100px) scale(1);}
     
         100% {transform: translateY(200px) scale(2);}
+      }
+
+      #animBut {
+        animation-name: animBut;
+        animation-duration: 1.9s;
+        animation-delay: 0.9s;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+        color:red;
+        font-size: 10px;
+
+      }
+      
+      @keyframes animBut {
+        0% {transform: translateY(0px);}
+        100% {transform: translateY(-10px) scale(1.7);}
       }
 
 }

@@ -29,16 +29,17 @@ if(!isset($_SESSION['login'])){
     <section id="animCo">
 
         <form method="POST"  class="bg-dark" class="formCo">
+        <div id="titreForm"> Formulaire de connexion</div>
             <div class="form-group">
                 <input type="text" minlength="3" class="alignCenter" required name="login" placeholder="login" value="<?php if(isset($_GET['login'])){echo $_GET['login'];} ?>"><br>
             </div>
             <div class="form-group">
                 <input type="password" class="alignCenter" minlength="3" required name="password" placeholder="password"><br>
             </div>
-            <input type="submit" id="valider" name="connexion" value="connexion">
+            <input type="submit" id="button" style="padding:0.4%;"  name="connexion" value="connexion">
         </form>
 
-            <div style="color:red;">
+            <div style="color:red;" id="animBut">
         <?php if(isset($_POST['connexion'])){
             connexion($_POST['login'],$_POST['password']);
         } ?></div>

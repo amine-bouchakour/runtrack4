@@ -30,6 +30,7 @@ if(!isset($_SESSION['login'])){
     ?>
     <section id="animCo">
         <form method="POST" class="bg-dark">
+            <div id="titreForm"> Formulaire d'inscription</div>
             <div class="form-group">
                 <input type="text" class="alignCenter" minlength="3" required name="login" placeholder="login">
             </div>
@@ -42,13 +43,14 @@ if(!isset($_SESSION['login'])){
             <div class="form-group">
                 <input type="email" class="alignCenter" minlength="3" required name="email" placeholder="Email">
             </div>
-            <input type="submit" id="valider" name="inscription" value="valider">
+            <input type="submit" style="padding:0.4% 0.8%;" id="button" name="inscription" value="valider">
         </form>
 
-
+        <div id="animBut">
         <?php  if(isset($_POST['inscription'])){
             inscription($_POST['login'],$_POST['password'],$_POST['confPassword'],$_POST['email']);
         } ?>
+        </div>
     </section>
     <?php }
 
