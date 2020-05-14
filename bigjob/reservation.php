@@ -42,8 +42,9 @@ if(isset($_SESSION['login'])){
   - Porter un masque et se laver régulièrement les mains. <br>
   - Tousser ou éternuer dans le plis de votre coudes. </br><br>
   - Les places seront limitées jusqu'à nouvelle ordre pour éviter la propagation du virus. <br><br>
-  - En cas de maladie, ou d'autres difficultées (connexion etc...), </br> merci de nous tenir informé de votre situation. </br><br>
+  - En cas de maladie, ou d'autres difficultées (connexion etc...), </br> merci de nous tenir informé de votre situation.
 </div>
+<medium>Plus de détails sur le protocole à suivre <a href="https://covid.students-laplateforme.io/">Ici</a></medium><br><br>
 
 <button type="button" class="btn btn-primary" style="font-size: 1.1vw" data-toggle="modal" data-target="#exampleModalCenter">Faire une demande de réservation</button>
 
@@ -62,7 +63,6 @@ if(isset($_SESSION['login'])){
         Nous vous répondrons au plus vite. </br>La reponse sera en fonction du nombre de places disponibles. <br>
         Elle sera visible sur votre profil, pensé à aller vérifier de temps à autre. <br><br>
         Merci de votre compréhension.</br> Bon retour à la norme et à très bientôt !
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
