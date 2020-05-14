@@ -69,7 +69,6 @@ if(isset($_SESSION['login'])){
         <form method="POST">
           <button type="button" class="btn btn-primary" onclick="window.location.href = 'calendrier.php';">Continuer</button>
         </form>
-        <?php if(isset($_POST['goCalender'])){header("location:calendrier.php");} ?>
       </div>
 
     </div>
@@ -81,7 +80,7 @@ if(isset($_SESSION['login'])){
 
 
 <?php
-$_SESSION['dejaVu']="Yes";
+
 }
 else{
   header("Location:calendrier.php");

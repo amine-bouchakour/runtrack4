@@ -127,6 +127,7 @@ if(isset($_SESSION['login'])){
                 } 
                 if($reponse == "no"){
                     echo "id='reponseNo'";
+                    $_SESSION['reponse']="no";
                 }
             }?> style="padding:1.2%;"> 
             <?php
@@ -158,21 +159,28 @@ if(isset($_SESSION['login'])){
     </table>
 
     <form method="POST">
-        <input type="submit" style="padding:0.6%;" name="effacer" class="bg-dark text-light" id="effaceHisto" value="Effacer historique refus"><br><br>
+        <?php if( isset($_SESSION['reponse']) && $_SESSION['reponse']=="no"){?>
+        <input type="submit" style="padding:0.6%;" name="effacer" class="bg-dark text-light" id="effaceHisto" value="Effacer historique refus">
+        <?php } ?>
+        <br><br>
         <input type="submit" style="padding:0.6%;" name="effacerDate" class="bg-dark text-light" id="effaceHisto" value="Effacer date dépassé">
     </form>
     </section>
+
+    
 
     <?php
         if(isset($_POST['effacer'])){
             $sqlDelete = ("DELETE FROM `reservation` WHERE login='".$_SESSION['login']."' AND reponse='no'");
             $reqDelete = $DB -> query($sqlDelete);
+            $_SESSION['reponse'] = "out";
             // header('Location:profil.php');
         }
         if(isset($_POST['effacerDate'])){
             $dateActuelle = date("Y-m-d");
             $sqlDeleteDate = ("DELETE FROM `reservation` WHERE login='".$_SESSION['login']."' AND date_reservation<'".$dateActuelle."'");
             $reqDeleteDate = $DB -> query($sqlDeleteDate);
+            $res = $reqDeleteDate -> fetch(PDO::FETCH_ASSOC);
             // header('location:profil.php');
         }
 }

@@ -30,10 +30,29 @@ padding:0;
         width: 30%;
         padding: 2%;
         margin-bottom: 2%;
-        background-color: #88c1d0;
         border: 7px black solid;
         border-radius: 1em;
         font-size: 22px;
+    }
+
+    .colBlue{
+        background-color: #88c1d0;
+    }
+    .colBlue2{
+        background-color: #fbdc75;
+    }
+    .colBlue3{
+        background-color: #f6a56b;
+    }
+
+
+    #titreIndex{
+        background-color:rgb(255, 193, 122); 
+        padding:1%; 
+        border-radius:0.3em; 
+        font-weight:bold; 
+        width:80%;
+        margin:0 auto 2%;
     }
 
     .realign{

@@ -22,9 +22,9 @@
 
 <body class="Info link bg-light">
 
-    <h2>Bienvenue sur l'application de réservation dédiée aux plateformeurs</h2>
+    <h2 id="titreIndex">Bienvenue sur l'application de réservation dédiée aux plateformeurs</h2>
     <br><br>
-    <h3>Voici les différentes fonctionnalitées proposées : </h3>
+    <h3>Voici les différentes fonctionnalitées que nous vous proposons : </h3>
     <br>
 
     <section id="fonctionnalites">
@@ -33,11 +33,11 @@
 
         <!-- USERS -->
         <?php if(isset($_SESSION['id_droits']) && $_SESSION['id_droits']=="2" || isset($_SESSION['id_droits']) && $_SESSION['id_droits']=="3"){ ?>
-            <div id="divFonctionnalites">
+            <div id="divFonctionnalites" class="colBlue">
             <h4><b> Pour les utilisateurs :</b></h4>
             <?php } else{ ?>
-                    <div id="divFonctionnalites" <?php if(!isset($_SESSION['id_droits']) || isset($_SESSION['id_droits']) && $_SESSION['id_droits']=="1"){echo "class='realign'";} ?> >
-                    <h4><b> Les Plateformeurs :</b></h4>
+                    <div id="divFonctionnalites" <?php if(!isset($_SESSION['id_droits']) || isset($_SESSION['id_droits']) && $_SESSION['id_droits']=="1"){echo "class='realign colBlue'";} ?> >
+                    <h4><b> Les Plateformeurs</b></h4>
                 <?php } ?>
             - Vous inscrire et de vous connecter à l'application<br>
             - Faire une demande de réservation d'une ou plusieurs dates<br>
@@ -47,8 +47,8 @@
 
         <?php if(isset($_SESSION['id_droits']) && $_SESSION['id_droits']=="2"){ ?>
         <!-- MODO -->
-        <div id="divFonctionnalites">
-            <h4><b>Pour les modérateurs :</b></h4>
+        <div id="divFonctionnalites" class="colBlue2">
+            <h4><b>Pour les modérateurs</b></h4>
             - Répondre aux demandes de réservations des plateformeurs<br>
             - Contacter un utilisateur via son email<br>
             - Supprimer un compte utilisateur
@@ -58,14 +58,14 @@
 
         <?php if(isset($_SESSION['id_droits']) && $_SESSION['id_droits']=="3"){ ?>
         <!-- ADMIN -->
-        <div id="divFonctionnalites">
-            <h4><b>Pour les modérateurs :</b></h4>
+        <div id="divFonctionnalites" class="colBlue2">
+            <h4><b>Pour les modérateurs</b></h4>
             - Répondre aux demandes de réservations des plateformeurs<br>
             - Contacter un utilisateur via son email<br>
             - Supprimer un compte utilisateur
         </div>
-        <div id="divFonctionnalites">
-            <h4><b>Pour les administrateurs :</b></h4>
+        <div id="divFonctionnalites" class="colBlue3">
+            <h4><b>Pour les administrateurs</b></h4>
             - Répondre aux demandes de réservations des plateformeurs<br>
             - Contacter un utilisateur via son email<br>
             - Supprimer un compte utilisateur<br>
