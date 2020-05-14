@@ -29,7 +29,7 @@ if(!isset($_SESSION['login'])){
 
     ?>
     <section id="animCo">
-        <form method="POST" class="bg-dark">
+        <form method="POST" class="col">
             <div id="titreForm"> Formulaire d'inscription</div>
             <div class="form-group">
                 <input type="text" class="alignCenter" minlength="3" required name="login" placeholder="login">

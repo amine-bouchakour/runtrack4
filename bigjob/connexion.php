@@ -28,7 +28,7 @@ if(!isset($_SESSION['login'])){
     ?>
     <section id="animCo">
 
-        <form method="POST"  class="bg-dark" class="formCo">
+        <form method="POST"  class="col" class="formCo">
         <div id="titreForm"> Formulaire de connexion</div>
             <div class="form-group">
                 <input type="text" minlength="3" class="alignCenter" required name="login" placeholder="login" value="<?php if(isset($_GET['login'])){echo $_GET['login'];} ?>"><br>

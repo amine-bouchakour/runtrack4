@@ -26,6 +26,8 @@ include('header.php');
 
 if(isset($_SESSION['login'])){
 
+  if(!isset($_SESSION['dejaVu'])){
+
 ?>
 
 <div id="titrePageOr" class="bg-warning" ><h2>Planning et Réservations</h2></div>
@@ -78,7 +80,13 @@ if(isset($_SESSION['login'])){
 
 
 
-<?php }
+<?php
+$_SESSION['dejaVu']="Yes";
+}
+else{
+  header("Location:calendrier.php");
+}
+}
 else{
     header("location:connexion.php");
 }
