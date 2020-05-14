@@ -1,3 +1,74 @@
+<?php
+include("functions.php");
+
+
+
+// PROMOTION
+if(isset($_POST['promotion'])){
+    $login = $_POST['loginDroits'];
+
+    $sqlVerif2 = ("SELECT id_droits FROM `users` WHERE login='".$login."'");
+    $reqVerif = $DB -> query($sqlVerif2);
+    $resVerif1 = $reqVerif -> fetch(PDO::FETCH_OBJ);
+
+    $droits = $resVerif1 ->id_droits;
+
+    if($droits < 3){
+        $droits = $droits +1;
+        $sqlUpdate = ("UPDATE `users`SET id_droits='".$droits."' WHERE login='".$login."'");
+        $reqUpdate = $DB -> query($sqlUpdate);
+
+        $sqlUpdateBis = ("UPDATE `admin`SET droits='".$droits."' WHERE login='".$login."'");
+        $reqUpdateBis = $DB -> query($sqlUpdateBis);
+
+        if($_SESSION['login'] == $login){
+            $_SESSION['id_droits']=$droits;
+        }
+        header("location:admin.php");
+    }
+
+}
+
+// RETROGRADATION
+if(isset($_POST['retrograder'])){
+    $login = $_POST['loginDroits'];
+
+    $sqlVerif3 = ("SELECT id_droits FROM `users` WHERE login='".$login."'");
+    $reqVerif2 = $DB -> query($sqlVerif3);
+    $resVerif2 = $reqVerif2 -> fetch(PDO::FETCH_OBJ);
+
+    $droits = $resVerif2 ->id_droits;
+
+    if($droits > 1){
+        $droits = $droits -1;
+        $sqlUpdate = ("UPDATE `users`SET id_droits='".$droits."' WHERE login='".$login."'");
+        $reqUpdate = $DB -> query($sqlUpdate);
+
+        $sqlUpdateBis = ("UPDATE `admin`SET droits='".$droits."' WHERE login='".$login."'");
+        $reqUpdateBis = $DB -> query($sqlUpdateBis);
+
+        if($_SESSION['login'] == $login){
+            $_SESSION['id_droits']=$droits;
+        }
+        header("location:admin.php");
+    }
+
+    if($droits == 1){
+        $sqlDelete = ("DELETE FROM `admin` WHERE login='".$login."'");
+        $reqDelete = $DB -> query($sqlDelete);
+    }   
+}
+
+// SUPPRESSION COMPTE
+if(isset($_POST['supprimer'])){
+    $login = $_POST['login'];
+
+    $sqlDelete = ("DELETE FROM `users` WHERE login='".$login."'");
+    $reqDelete = $DB -> query($sqlDelete);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -24,7 +95,6 @@ include("header.php");
 
 if($_SESSION['id_droits'] == "2" || $_SESSION['id_droits'] == "3"){
 
-include("functions.php");
 
 
 ?>
@@ -46,22 +116,22 @@ include("functions.php");
 <?php
 
 // REQUETE TOUTES LES DEMANDES D'AUTORISATION EN COURS
-$sql = ('SELECT login,date_reservation,date_demande FROM `demande_autorisation` ORDER BY date_reservation');
-$req = $DB -> query($sql);
+$sql1 = ('SELECT login,date_reservation,date_demande FROM `demande_autorisation` ORDER BY date_reservation');
+$req1 = $DB -> query($sql1);
 $i=1;
-while($res = $req -> fetch(PDO::FETCH_OBJ)){
-    $date = $res ->date_reservation;
+while($res1 = $req1 -> fetch(PDO::FETCH_OBJ)){
+    $date = $res1 ->date_reservation;
     $newDate = $date[8].$date[9]."/".$date[5].$date[6]."/".$date[0].$date[1].$date[2].$date[3];
-    $res ->date_reservation = $newDate;
+    $res1 ->date_reservation = $newDate;
 
-    $date1 = $res ->date_demande;
+    $date1 = $res1 ->date_demande;
     $newDate1 = $date1[8].$date1[9]."/".$date1[5].$date1[6]."/".$date1[0].$date1[1].$date1[2].$date1[3];
-    $res ->date_demande = $newDate1;
+    $res1 ->date_demande = $newDate1;
 
     ?>
         <tr><th style="padding:1.2%;" scope="row"><?php echo $i++ ?></th> 
     <?php
-    foreach($res as $info){
+    foreach($res1 as $info){
         ?><td class="text-warning" style="padding:1.4%;"> <?php
         echo $info;
         ?> </td>
@@ -70,8 +140,8 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
     ?>
     <td>
         <form method="POST" style="padding:1.2%;">
-            <input type="hidden" name="droitDate" value="<?php $res ->date_reservation = $date; echo $res->date_reservation ?>">
-            <input type="hidden" name="droitLogin" value="<?php echo $res->login ?>">
+            <input type="hidden" name="droitDate" value="<?php $res1 ->date_reservation = $date; echo $res1->date_reservation ?>">
+            <input type="hidden" name="droitLogin" value="<?php echo $res1->login ?>">
             <input type="submit" name="accepter" id="reponseYes" value="Accepter">
             <input type="submit" name="refuser" id="reponseNo" value="Refuser">
         </form>
@@ -82,18 +152,18 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
 
 if(isset($_POST['accepter'])){
     
-    $res ->date_demande = $date1;
+    $res1 ->date_demande = $date1;
 
     $date2 = $_POST['droitDate'];
     $login = $_POST['droitLogin'];
 
-    $sqlVerif = ("SELECT * FROM reservation WHERE login='".$login."' AND date_reservation='".$date2."'");
-    $req = $DB -> query($sqlVerif);
-    $res = $req -> fetch(PDO::FETCH_OBJ);
+    $sqlVerif1 = ("SELECT * FROM reservation WHERE login='".$login."' AND date_reservation='".$date2."'");
+    $req2 = $DB -> query($sqlVerif1);
+    $res2 = $req2 -> fetch(PDO::FETCH_OBJ);
 
-    if(!$res){
-        $sql = ("INSERT INTO `reservation` (`login`,`date_reservation`,`admin_user`,`reponse`) VALUE ('".$login."','".$date2."','".$_SESSION['login']."','yes')");
-        $req = $DB -> query($sql);
+    if(!$res2){
+        $sqlInsert = ("INSERT INTO `reservation` (`login`,`date_reservation`,`admin_user`,`reponse`) VALUE ('".$login."','".$date2."','".$_SESSION['login']."','yes')");
+        $reqInsert = $DB -> query($sqlInsert);
 
         $sqlDelete = ("DELETE FROM `demande_autorisation` WHERE login='".$login."' AND date_reservation='".$date2."'");
         $reqDelete = $DB -> query($sqlDelete);
@@ -105,8 +175,8 @@ if(isset($_POST['refuser'])){
     $date = $_POST['droitDate'];
     $login = $_POST['droitLogin'];
 
-    $sql = ("INSERT INTO `reservation` (`login`,`date_reservation`,`admin_user`,`reponse`) VALUE ('".$login."','".$date."','".$_SESSION['login']."','no')");
-        $req = $DB -> query($sql);
+    $sql2 = ("INSERT INTO `reservation` (`login`,`date_reservation`,`admin_user`,`reponse`) VALUE ('".$login."','".$date."','".$_SESSION['login']."','no')");
+    $req2 = $DB -> query($sql2);
 
     $sqlDelete = ("DELETE FROM `demande_autorisation` WHERE login='".$login."' AND date_reservation='".$date."'");
     $reqDelete = $DB -> query($sqlDelete);
@@ -144,19 +214,19 @@ if(isset($_POST['refuser'])){
 
 <?php 
 // REQUETE TOUTES LES PERSONNES ETANT DANS L'ADMNISTRATION DU SITE
-$sql = ('SELECT login,droits,date_ajout,ajouter_par FROM `admin` ORDER BY droits DESC');
-$req = $DB -> query($sql);
+$sql3 = ('SELECT login,droits,date_ajout,ajouter_par FROM `admin` ORDER BY droits DESC');
+$req3 = $DB -> query($sql3);
 $i=1;
-while($res = $req -> fetch(PDO::FETCH_OBJ)){
-    $date = $res ->date_ajout;
+while($res3 = $req3 -> fetch(PDO::FETCH_OBJ)){
+    $date = $res3 ->date_ajout;
     $newDate = $date[8].$date[9]."/".$date[5].$date[6]."/".$date[0].$date[1].$date[2].$date[3];
-    $res ->date_ajout = $newDate;
+    $res3 ->date_ajout = $newDate;
     ?>
         <tr><th scope="row" style="padding:1.2%;"><?php echo $i++; ?></th> 
     <?php
-    foreach($res as $info){
-        if($res->droits == "2"){$res->droits = "Modérateur";}
-        if($res->droits == "3"){$res->droits = "Administateur";}
+    foreach($res3 as $info){
+        if($res3->droits == "2"){$res3->droits = "Modérateur";}
+        if($res3->droits == "3"){$res3->droits = "Administateur";}
         ?><td id="bold" style="padding:1.4%;"> <?php
         echo $info;
         ?> </td> <?php
@@ -166,7 +236,7 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
     ?>
         <td>
             <form method="POST">
-                <input type="hidden" name="loginDroits" value="<?php echo $res->login ?>">
+                <input type="hidden" name="loginDroits" value="<?php echo $res3->login ?>">
                 <input type="submit" style="padding:1.2%;" name="retrograder" id="reponseNo" value="Rétrograder">
                 <input type="submit" style="padding:1.2%;" name="promotion" id="reponseYes" value="Promouvoir">
             </form>
@@ -178,61 +248,7 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
     <?php
 }
 
-// PROMOTION
-if(isset($_POST['promotion'])){
-    $login = $_POST['loginDroits'];
 
-    $sqlVerif = ("SELECT id_droits FROM `users` WHERE login='".$login."'");
-    $reqVerif = $DB -> query($sqlVerif);
-    $resVerif = $reqVerif -> fetch(PDO::FETCH_OBJ);
-
-    $droits = $resVerif ->id_droits;
-
-    if($droits < 3){
-        $droits = $droits +1;
-        $sqlUpdate = ("UPDATE `users`SET id_droits='".$droits."' WHERE login='".$login."'");
-        $reqUpdate = $DB -> query($sqlUpdate);
-
-        $sqlUpdateBis = ("UPDATE `admin`SET droits='".$droits."' WHERE login='".$login."'");
-        $reqUpdateBis = $DB -> query($sqlUpdateBis);
-
-        if($_SESSION['login'] == $login){
-            $_SESSION['id_droits']=$droits;
-        }
-        header("location:admin.php");
-    }
-
-}
-
-// RETROGRADATION
-if(isset($_POST['retrograder'])){
-    $login = $_POST['loginDroits'];
-
-    $sqlVerif = ("SELECT id_droits FROM `users` WHERE login='".$login."'");
-    $reqVerif = $DB -> query($sqlVerif);
-    $resVerif = $reqVerif -> fetch(PDO::FETCH_OBJ);
-
-    $droits = $resVerif ->id_droits;
-
-    if($droits > 1){
-        $droits = $droits -1;
-        $sqlUpdate = ("UPDATE `users`SET id_droits='".$droits."' WHERE login='".$login."'");
-        $reqUpdate = $DB -> query($sqlUpdate);
-
-        $sqlUpdateBis = ("UPDATE `admin`SET droits='".$droits."' WHERE login='".$login."'");
-        $reqUpdateBis = $DB -> query($sqlUpdateBis);
-
-        if($_SESSION['login'] == $login){
-            $_SESSION['id_droits']=$droits;
-        }
-        header("location:admin.php");
-    }
-
-    if($droits == 1){
-        $sqlDelete = ("DELETE FROM `admin` WHERE login='".$login."'");
-        $reqDelete = $DB -> query($sqlDelete);
-    }   
-}
 ?>
 
 
@@ -263,19 +279,19 @@ if(isset($_POST['retrograder'])){
 
 if(isset($_POST['ajouter'])){
 
-    $sqlVerif = ("SELECT * FROM `admin` WHERE login='".$_POST['login']."'");
-    $reqVerif = $DB -> query($sqlVerif);
-    $resVerif = $reqVerif -> fetch(PDO::FETCH_OBJ);
+    $sqlVerif4 = ("SELECT * FROM `admin` WHERE login='".$_POST['login']."'");
+    $reqVerif = $DB -> query($sqlVerif4);
+    $resVerif3 = $reqVerif -> fetch(PDO::FETCH_OBJ);
 
-    if(!$resVerif){
+    if(!$resVerif3){
 
-        $sqlVerif2 = ("SELECT * FROM users WHERE login='".$_POST['login']."'");
-        $reqVerif2 = $DB -> query($sqlVerif2);
-        $resVerif2 = $reqVerif2 -> fetch(PDO::FETCH_OBJ);
+        $sqlVerif5 = ("SELECT * FROM users WHERE login='".$_POST['login']."'");
+        $reqVerif5 = $DB -> query($sqlVerif5);
+        $resVerif4 = $reqVerif5 -> fetch(PDO::FETCH_OBJ);
 
         $date = date("Y-m-d");
 
-        if($resVerif2){
+        if($resVerif4){
 
             if($_POST['droits'] != "Choisir Droits"){
 
@@ -335,15 +351,15 @@ if(isset($_POST['ajouter'])){
 
 <?php
 // REQUETE TOUTES LES PERSONNES UTILISATEUR STANDARD DU SITE
-$sql = ('SELECT login,email,id_droits FROM `users` WHERE id_droits=1');
-$req = $DB -> query($sql);
+$sql4 = ('SELECT login,email,id_droits FROM `users` WHERE id_droits=1');
+$req4 = $DB -> query($sql4);
 $i=1;
-while($res = $req -> fetch(PDO::FETCH_OBJ)){
+while($res4 = $req4 -> fetch(PDO::FETCH_OBJ)){
     ?>
         <tr><th scope="row" style="padding:1.2%;"><?php echo $i++; ?></th> 
     <?php
-    foreach($res as $info){
-        if($res->id_droits == 1){ $res->id_droits = "Utilisateurs";}
+    foreach($res4 as $info){
+        if($res4->id_droits == 1){ $res4->id_droits = "Utilisateurs";}
         ?><td class="text-info" style="padding:1.2%;"> <?php
         echo $info;
         ?> </td> <?php
@@ -353,7 +369,7 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
     ?>
         <td>
             <form method="POST">
-                <input type="hidden" style="padding:1.1%;" name="login" value="<?php echo $res->login ?>">
+                <input type="hidden" style="padding:1.1%;" name="login" value="<?php echo $res4->login ?>">
                 <input type="submit" style="padding:1.1%;" name="supprimer" id="reponseNo" value="Supprimer">
             </form>
         </td> 
@@ -371,13 +387,7 @@ while($res = $req -> fetch(PDO::FETCH_OBJ)){
 
 <?php
 
-// SUPPRESSION COMPTE
-if(isset($_POST['supprimer'])){
-    $login = $_POST['login'];
 
-    $sqlDelete = ("DELETE FROM `users` WHERE login='".$login."'");
-    $reqDelete = $DB -> query($sqlDelete);
-}
 
 }
 else{
